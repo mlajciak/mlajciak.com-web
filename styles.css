@@ -15,5 +15,10 @@ h2 {
   margin: 0;
   padding: 0;
   font-weight: normal;
-  color: gray;
+  color: black;
+}
+
+.book-h2{
+  font-size:1rem;
+  font-weight: bold;
 }
