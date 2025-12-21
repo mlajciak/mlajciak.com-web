@@ -1,24 +1,130 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 body {
-  margin: 0;
-  font-family: Arial;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background-color: #000000;
 }
 
-h1{
+::selection {
+  background-color: #ffffff;
+  color: #000000;
+}
+
+::-moz-selection {
+  background-color: #ffffff;
+  color: #000000;
+}
+
+.container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 1.5rem;
+  padding-top: 2rem;
+}
+
+.name-row {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.text {
+  font-family: 'JetBrains Mono', monospace;
   font-size: 2rem;
-  margin: 0;
-  padding: 0;
   font-weight: normal;
+  text-align: center;
+  color: #ffffff;
+  margin: 0;
 }
 
-h2 {
-  font-size: 1.25rem;
+p.text {
+  font-size: 0.875rem;
+  max-width: 1000px;
+  line-height: 1.6;
   margin: 0;
-  padding: 0;
-  font-weight: normal;
-  color: black;
+  font-weight: 400;
 }
 
-.book-h2{
-  font-size:1rem;
-  font-weight: bold;
+.link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-decoration: none;
+  transition: color 0.3s ease, filter 0.3s ease;
+  cursor: pointer;
+  color: #666666;
+}
+
+.link:hover {
+  color: #ffffff;
+}
+
+.icon {
+  width: 24px;
+  height: 24px;
+  display: block;
+  pointer-events: none;
+  flex-shrink: 0;
+  opacity: 0.6;
+  transition: opacity 0.3s ease;
+}
+
+.link:hover .icon {
+  opacity: 1;
+}
+
+.link-text {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 1rem;
+  color: inherit;
+}
+
+.separator {
+  width: 100%;
+  max-width: 1000px;
+  height: 1px;
+  background-color: #ffffff;
+  margin-top: 1rem;
+}
+
+@media (max-width: 768px) {
+  .name-row {
+    gap: 0.75rem;
+  }
+  
+  .text {
+    font-size: 1.5rem;
+  }
+  
+  p.text {
+    font-size: 0.55rem;
+    max-width: 100%;
+    padding: 0 1rem;
+  }
+  
+  .icon {
+    width: 20px;
+    height: 20px;
+  }
+  
+  .link-text {
+    font-size: 0.875rem;
+  }
+  
+  .separator {
+    max-width: 100%;
+    margin-top: 0.5rem;
+  }
 }

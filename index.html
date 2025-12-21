@@ -2,96 +2,24 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#000000" />
-    <meta name="description" content="Web site created using create-react-app" />
-    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
-    <!--
-      manifest.json provides metadata used when your web app is installed on a
-      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
-    -->
-    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="styles.css" />
     <title>Michal Lajčiak</title>
   </head>
   <body>
-      <div id="head" style="display: flex; flex-direction: column; align-items: center; padding: 2rem 5vw;">
-        <!--<h1 style="text-align: center; margin-bottom:20%;">this site is in progress...</h1>-->
-        <img src="public/me.jpg" id="my photo" style="width: 10rem; height: 10rem; border-radius: 50%; object-fit: cover;" alt="My photo" />
-        <div style="width: 100%; max-width: 600px;">
-          <h1 style="text-align: center;">Michal Lajčiak</h1>
-          <h2 style="text-align: center; color:gray; padding-top:1%;">I research, develop and publish AI and mainly RL, Robotics.<br>I also like reading about quantum physics, space and history.I love reading fantasy books (especially Tolkien)<hr>Founder of <a href="https://obeliskworks.com" target="_blank" style="color:inherit; text-decoration:underline;">Obelisk</a> - All-In-One Scientific and Study Workspace with AI</h2>
-          <div style="display: flex; justify-content: center; gap: 1rem; margin-top: 3%;">
-            <a href="https://x.com/LajciakMichal" target="_blank" class="x-link" style="text-decoration: none;">
-              <img src="public/x-logo.png" alt="X" style="width: 2rem; height: 2rem; border-radius:50%;" />
-            </a>
-            <a href="https://www.linkedin.com/in/michal-lajčiak-363a0021a" target="_blank" class="linkedin-link" style="text-decoration: none;">
-              <img src="public/linkedin-logo.png" alt="LinkedIn" style="width: 2rem; height: 2rem; border-radius:50%;" />
-            </a>
-            <a href="https://github.com/mlajciak" target="_blank" class="github-link" style="text-decoration: none;">
-              <img src="public/github-logo.png" alt="GitHub" style="width: 2rem; height: 2rem; border-radius:50%;" />
-            </a>
-            <a href="https://scholar.google.com/citations?user=RklBbaIAAAAJ&hl=sk" target="_blank" class="scholar-link" style="text-decoration: none;">
-              <img src="public/scholar-logo.png" alt="Scholar" style="width: 2rem; height: 2rem; border-radius:50%;" />
-            </a>
-          </div>
-        </div>
+    <div class="container">
+      <div class="name-row">
+        <h1 class="text">Michal Lajčiak</h1>
+        <a href="https://x.com/lajciakmichal" class="link" title="https://x.com/lajciakmichal">
+          <img src="x.svg" alt="X" class="icon" />
+          <span class="link-text">@lajciakmichal</span>
+        </a>
       </div>
-
-      <hr>
-   
-      <div id="publications" style="display: flex; flex-direction: column; align-items: center; margin-top:2rem; margin-bottom:2rem;">
-        <div style="width: 100%; max-width: 600px;">
-          <h1 style="text-align: left;padding-bottom:1rem; cursor:pointer;" onclick="toggleSection('publications')">Publications</h1>
-          <div class="section-content" style="display:none;">
-            <!-- template -->
-            <div style="border-bottom: 1px solid #ccc; padding-bottom: 0.25rem; border-left: 5px solid #000000; padding-left: 1rem; margin-bottom:1rem;">
-              <h2>
-                <a href="https://doi.org/10.3390/s25133886" target="_blank">Swarm Control with RRT-APF Planning and FNN Task Allocation Tested on Mobile Differential Platform</a>
-              </h2>
-              <p style="color: gray; font-size: 0.9rem;">Michal Lajčiak, Ján Vachálek, 2025</p>
-            </div>
-            <!-- template -->
-          </div>
-        </div>
-      </div>
-
-      <hr>
-
-      <div id="awards" style="display: flex; flex-direction: column; align-items: center; margin-top:2rem; margin-bottom:2rem;">
-        <div style="width: 100%; max-width: 600px;">
-          <h1 style="text-align: left;padding-bottom:1rem; cursor:pointer;" onclick="toggleSection('awards')">Awards</h1>
-          <div class="section-content" style="display:none;"></div>
-        </div>
-      </div>
-
-      <hr>
-
-      <div id="projects" style="display: flex; flex-direction: column; align-items: center; margin-top:2rem; margin-bottom:2rem;">
-        <div style="width: 100%; max-width: 600px;">
-          <h1 style="text-align: left;padding-bottom:1rem; cursor:pointer;" onclick="toggleSection('projects')">Projects</h1>
-          <div class="section-content" style="display:none;">
-
-            
-          </div>
-
-          <script src="scripts/collapsible.js"></script>
-          <script src="scripts/load-projects.js"></script>
-          <script src="scripts/load-awards.js"></script>
-          <script src="scripts/load-bmg.js"></script>
-
-        </div>
-      </div>
-
-      <hr>
-      <div id="book-movies-games-recommendations" style="display: flex; flex-direction: column; align-items: center; margin-top:2rem; margin-bottom:2rem;">
-        <div style="width: 100%; max-width: 600px;">
-          <h1 style="text-align: left;padding-bottom:1rem; cursor:pointer;" onclick="toggleSection('book-movies-games-recommendations')">Book & Movies & Games Reviews</h1>
-          <div class="section-content" style="display:none;"></div>
-        </div>
-      </div>
-      <hr>
-
+      <p class="text">Founder of Obelisk. I research and develop in ML and robotics. </p>
+      <div class="separator"></div>
+    </div>
   </body>
 </html>
