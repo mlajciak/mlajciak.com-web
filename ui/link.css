@@ -1,0 +1,66 @@
+/* Link Component */
+.link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-decoration: underline;
+  text-decoration-color: #666666;
+  text-underline-offset: 2px;
+  transition: color 0.3s ease, text-decoration-color 0.3s ease;
+  cursor: pointer;
+  color: #666666;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.75rem;
+}
+
+.link:hover {
+  color: #ffffff;
+  text-decoration-color: #ffffff;
+}
+
+.link-underline {
+  text-decoration: underline;
+  text-decoration-color: #666666;
+  text-underline-offset: 2px;
+}
+
+.link-underline:hover {
+  text-decoration-color: #ffffff;
+}
+
+.link-small {
+  font-size: 0.65rem;
+}
+
+.link-large {
+  font-size: 0.875rem;
+}
+
+/* Link within card hover effect */
+.card:hover .link {
+  color: #999999;
+}
+
+.card:hover .link:hover {
+  color: #ffffff;
+}
+
+/* Icon within link */
+.link-icon {
+  width: 18px;
+  height: 18px;
+  opacity: 0.6;
+  transition: opacity 0.3s ease;
+  flex-shrink: 0;
+}
+
+.link:hover .link-icon {
+  opacity: 1;
+}
+
+.link-text {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: inherit;
+  color: inherit;
+}
+
