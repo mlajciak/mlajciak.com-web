@@ -1,61 +1,75 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Source+Serif+4:ital,opsz,wght@0,8..60,300..700;1,8..60,300..700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="styles.css" />
-    <title>Michal Lajčiak</title>
-    <style>
-      *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-      body { width: 100%; min-height: 100vh; background: #fafafa; font-family: 'Source Serif 4', Georgia, serif; color: #111; }
-      .container { width: 100%; min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; padding: 2rem 1.5rem; padding-top: 2rem; }
-      .header-section { display: flex; align-items: flex-start; justify-content: center; gap: 2rem; flex-wrap: wrap; max-width: 960px; width: fit-content; margin-left: auto; margin-right: auto; }
-      .header-video-wrap { flex-shrink: 0; width: 5.5rem; height: 5.5rem; border-radius: 6px; border: 1px solid #000; overflow: hidden; display: block; }
-      #header-video { width: 100%; height: 100%; object-fit: cover; display: block; filter: invert(1); }
-      .header-content { display: flex; flex-direction: column; gap: 0.75rem; min-width: 0; }
-      #name-row { display: flex; align-items: baseline; gap: 1rem; flex-wrap: wrap; }
-      .site-title { font-family: 'Instrument Serif', Georgia, serif; font-size: clamp(1.75rem, 4vw, 2.25rem); font-weight: 400; color: #111; letter-spacing: -0.02em; line-height: 1.2; }
-      .x-link { display: inline-flex; align-items: center; gap: 0.5rem; text-decoration: none; color: #555; font-size: 1rem; transition: color 0.2s; }
-      .x-link:hover { color: #000; }
-      .x-link:hover .x-icon { opacity: 1; transform: scale(1.15); }
-      .x-icon { width: 18px; height: 18px; opacity: 0.8; display: block; flex-shrink: 0; transition: opacity 0.2s, transform 0.2s; filter: invert(1); }
-      .site-tagline { font-size: 1.0625rem; color: #555; line-height: 1.6; max-width: 42ch; }
-      .tagline-lead { white-space: nowrap; }
-      .tagline-ghost { font-style: italic; opacity: 0.5; color: inherit; }
-    </style>
-  </head>
-  <body>
-    <div class="container">
-      <div class="header-section">
-        <div class="header-video-wrap">
-          <video id="header-video" autoplay loop muted playsinline width="88" height="88">
-            <source src="assets/me.mov" type="video/mp4">
-          </video>
-        </div>
-        <div class="header-content">
-          <div id="name-row">
-            <h1 class="site-title">Michal Lajčiak</h1>
-            <a href="https://x.com/lajciakmichal" id="x-link" class="x-link" title="@lajciakmichal">
-              <img src="assets/x.svg" alt="X" class="x-icon" />
-              <span class="x-handle">@lajciakmichal</span>
-            </a>
-          </div>
-          <p class="site-tagline"><span class="tagline-lead">Founder of Obelisk:</span> <span class="tagline-ghost">Platform for AI Research</span></p>
-        </div>
-      </div>
-    </div>
-    <script>
-      const video = document.getElementById('header-video');
-      if (video) {
-        video.play().catch(() => {});
-        video.addEventListener('ended', function() {
-          this.currentTime = 0;
-          this.play();
-        });
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>mlajciak.com</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      width: 100%;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: #000;
+      font-family: 'JetBrains Mono', monospace;
+      overflow: hidden;
+    }
+
+    .terminal-text {
+      color: #fff;
+      font-size: 1.5rem;
+      white-space: nowrap;
+    }
+
+    .cursor {
+      display: inline-block;
+      width: 0.6em;
+      height: 1em;
+      background-color: #fff;
+      margin-left: 2px;
+      animation: blink 1s step-end infinite;
+      vertical-align: text-bottom;
+    }
+
+    @keyframes blink {
+      0%, 50% {
+        opacity: 1;
       }
-    </script>
-  </body>
+      50.1%, 100% {
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="terminal-text">
+    <span id="typed-text"></span><span class="cursor"></span>
+  </div>
+
+  <script>
+    const text = '> run-asi.sh';
+    const typedTextElement = document.getElementById('typed-text');
+    let index = 0;
+
+    function typeWriter() {
+      if (index < text.length) {
+        typedTextElement.textContent += text.charAt(index);
+        index++;
+        setTimeout(typeWriter, 100);
+      }
+    }
+
+    typeWriter();
+  </script>
+</body>
 </html>
