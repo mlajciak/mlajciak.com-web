@@ -1,44 +1,41 @@
 {
   "0": {
     "name": "XYZT",
-    "description": "AI-powered engineering workspace for building with neural nets.",
     "url": "https://xyzt-lab.com",
-    "cover_image": "/projects/card-backdrop.svg"
+    "cover_image": "xyzt/cover.png"
   },
   "1": {
     "name": "Novel Robotic Swarm Control System",
-    "description": "Control and coordination strategies for multi-robot swarms.",
-    "entry_point": "novel_robotic_swarm/novel_robotic_swarm.md"
+    "url":"https://www.mdpi.com/1424-8220/25/13/3886",
+    "entry_point": "novel_robotic_swarm/novel_robotic_swarm.md",
+    "cover_image": "robot.png"
   },
   "2": {
     "name": "Application of Robotic Swarm Into Reconfigurable Manufacturing Line",
-    "description": "Swarm robotics applied to flexible, reconfigurable manufacturing.",
-    "entry_point": "robotic_swarm_manufacturing/robotic_swarm_manufacturing.md"
+    "entry_point": "robotic_swarm_manufacturing/robotic_swarm_manufacturing.md",
+    "cover_image": "robotic_swarm_manufacturing/cover.png"
   },
   "3": {
     "name": "MARVIN: Modular Omnidirectional Robot with Machine Vision",
-    "description": "Modular omnidirectional mobile robot with machine vision for perception and navigation.",
-    "entry_point": "marvin/marvin.md"
+    "entry_point": "marvin/marvin.md",
+    "cover_image": "marvin/cover.png"
+
   },
   "4": {
     "name": "Mint-1",
-    "description": "Robotics hardware and integration project.",
     "entry_point": "mint_1/mint_1.md"
   },
   "5": {
     "name": "RL experiments",
-    "description": "Reinforcement learning for robotics and sequential decision-making.",
     "entry_point": "rl_research/rl_research.md"
   },
   "6": {
     "name": "Humancode",
-    "description": "Human–machine collaboration and code that stays understandable, safe, and useful.",
-    "entry_point": "humancode/humancode.md",
-    "cover_image": "/projects/card-backdrop.svg"
+    "url": "https://github.com/mlajciak/humancode",
+    "cover_image": "humancode/cover.png"
   },
   "7": {
     "name": "GEMEL",
-    "description": "Webcam face mesh and 3D point-cloud clone (MediaPipe + Three.js).",
     "entry_point": "gemel/gemel.md",
     "cover_image": "/projects/gemel/cover.png"
   }

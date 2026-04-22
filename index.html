@@ -3,73 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>mlajciak.com</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    body {
-      width: 100%;
-      height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background-color: #000;
-      font-family: 'JetBrains Mono', monospace;
-      overflow: hidden;
-    }
-
-    .terminal-text {
-      color: #fff;
-      font-size: 1.5rem;
-      white-space: nowrap;
-    }
-
-    .cursor {
-      display: inline-block;
-      width: 0.6em;
-      height: 1em;
-      background-color: #fff;
-      margin-left: 2px;
-      animation: blink 1s step-end infinite;
-      vertical-align: text-bottom;
-    }
-
-    @keyframes blink {
-      0%, 50% {
-        opacity: 1;
-      }
-      50.1%, 100% {
-        opacity: 0;
-      }
-    }
-  </style>
+  <link rel="icon" href="/favicon.jpg" type="image/jpeg" />
+  <link rel="apple-touch-icon" href="/favicon.jpg" />
+  <title>Michal Lajčiak</title>
 </head>
 <body>
-  <div class="terminal-text">
-    <span id="typed-text"></span><span class="cursor"></span>
-  </div>
-
-  <script>
-    const text = '> run-asi.sh';
-    const typedTextElement = document.getElementById('typed-text');
-    let index = 0;
-
-    function typeWriter() {
-      if (index < text.length) {
-        typedTextElement.textContent += text.charAt(index);
-        index++;
-        setTimeout(typeWriter, 100);
-      }
-    }
-
-    typeWriter();
-  </script>
+  <div id="root"></div>
+  <script type="module" src="/src/main.tsx"></script>
 </body>
 </html>
