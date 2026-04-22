@@ -6,7 +6,7 @@ import remarkMath from 'remark-math'
 import rehypeKatex from 'rehype-katex'
 import rehypeSlug from 'rehype-slug'
 import 'katex/dist/katex.min.css'
-import { Minus, Moon, Plus, Sun } from 'lucide-react'
+import { ALargeSmall, Moon, Sun } from 'lucide-react'
 import { Button } from './ui'
 import { publicAsset } from './projectCover'
 import './BlogPost.css'
@@ -93,10 +93,10 @@ export function BlogPost() {
         <div className="blog-nav-controls">
           <div className="font-size-controls">
             <Button variant="ghost" size="sm" className="font-btn font-btn--left" onClick={decreaseFont} aria-label="Decrease font size">
-              <Minus size={17} strokeWidth={2} aria-hidden />
+              <ALargeSmall size={17} strokeWidth={1.75} aria-hidden />
             </Button>
             <Button variant="ghost" size="sm" className="font-btn font-btn--right" onClick={increaseFont} aria-label="Increase font size">
-              <Plus size={17} strokeWidth={2} aria-hidden />
+              <ALargeSmall size={17} strokeWidth={1.75} aria-hidden />
             </Button>
           </div>
           <Button
