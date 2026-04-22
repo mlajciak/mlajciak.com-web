@@ -274,7 +274,7 @@ body[data-theme="dark"] .blog-section {
   font-size: 10pt;
   font-weight: 600;
   cursor: pointer;
-  border-radius: 4px;
+  border-radius: 50%;
   transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
   display: flex;
   align-items: center;
@@ -721,8 +721,9 @@ body[data-theme="dark"] .post-date {
   .pagination-btn {
     min-width: 32px;
     height: 32px;
-    padding: 0 8px;
+    padding: 0;
     font-size: 9pt;
+    border-radius: 50%;
   }
 
   .section-title {
