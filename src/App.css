@@ -275,7 +275,7 @@ body[data-theme="dark"] .blog-section {
   font-weight: 600;
   cursor: pointer;
   border-radius: 4px;
-  transition: background 0.2s ease, border-color 0.2s ease;
+  transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -288,6 +288,10 @@ body[data-theme="dark"] .blog-section {
 .pagination-btn--active {
   background: #000000;
   color: #ffffff;
+}
+
+.pagination-btn--active:hover {
+  color: #000000;
 }
 
 body[data-theme="dark"] .pagination-btn {
@@ -303,6 +307,10 @@ body[data-theme="dark"] .pagination-btn:hover {
 body[data-theme="dark"] .pagination-btn--active {
   background: #e5e5e5;
   color: #000000;
+}
+
+body[data-theme="dark"] .pagination-btn--active:hover {
+  color: #e5e5e5;
 }
 
 .projects-section {
