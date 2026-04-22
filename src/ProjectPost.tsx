@@ -106,7 +106,7 @@ export function ProjectPost() {
               onClick={decreaseFont}
               aria-label="Decrease font size"
             >
-              <ALargeSmall size={14} strokeWidth={1.75} aria-hidden />
+              <ALargeSmall size={12} strokeWidth={1.75} aria-hidden />
             </Button>
             <Button
               variant="ghost"
@@ -115,7 +115,7 @@ export function ProjectPost() {
               onClick={increaseFont}
               aria-label="Increase font size"
             >
-              <ALargeSmall size={20} strokeWidth={1.75} aria-hidden />
+              <ALargeSmall size={24} strokeWidth={1.75} aria-hidden />
             </Button>
           </div>
           <Button
