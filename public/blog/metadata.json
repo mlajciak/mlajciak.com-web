@@ -20,40 +20,5 @@
         "tags": [""],
         "description": "",
         "entry_point": "the_ai_economy/the_ai_economy.md"   
-    },
-    "3":{
-        "title": "Neural Networks Explained",
-        "date": "2026-05-01",
-        "tags": [""],
-        "description": "",
-        "entry_point": "neural_networks/neural_networks.md"
-    },
-    "4":{
-        "title": "Deep Learning Fundamentals",
-        "date": "2026-05-02",
-        "tags": [""],
-        "description": "",
-        "entry_point": "deep_learning/deep_learning.md"
-    },
-    "5":{
-        "title": "Computer Vision Advances",
-        "date": "2026-05-03",
-        "tags": [""],
-        "description": "",
-        "entry_point": "computer_vision/computer_vision.md"
-    },
-    "6":{
-        "title": "Natural Language Processing",
-        "date": "2026-05-04",
-        "tags": [""],
-        "description": "",
-        "entry_point": "nlp/nlp.md"
-    },
-    "7":{
-        "title": "Reinforcement Learning Guide",
-        "date": "2026-05-05",
-        "tags": [""],
-        "description": "",
-        "entry_point": "reinforcement_learning/reinforcement_learning.md"
     }
 }
