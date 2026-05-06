@@ -5,5 +5,13 @@
         "tags": [""],
         "description": "",
         "entry_point": "transformer_architecture/transformer_architecture.md"
+    },
+    "1":{
+        "title": "Recommendations for Reading",
+        "date": "2026-01-01",
+        "tags": [""],
+        "description": "",
+        "entry_point": "recommendations/recommendations.md",
+        "pinned": true
     }
 }

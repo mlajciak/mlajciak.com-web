@@ -7,6 +7,7 @@ interface BlogPost {
   title: string
   date: string
   entry_point: string
+  pinned?: boolean
 }
 
 export default function App() {
@@ -20,8 +21,9 @@ export default function App() {
       .then(r => r.json())
       .then(data => {
         const list: BlogPost[] = Object.values(data)
-        list.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
-        setPosts(list)
+        const pinned = list.filter(p => p.pinned)
+        const rest = list.filter(p => !p.pinned).sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+        setPosts([...pinned, ...rest])
       })
   }, [])
 
@@ -70,24 +72,15 @@ export default function App() {
         <section className="blog-section">
           <h2>Posts</h2>
           <div className="post-list">
-            <Link to="/recommendations" className="post-link">
-              <article className="post-item post-item--pinned">
-                <div className="post-pin"><Pin size={13} strokeWidth={2} /><span>Pinned</span></div>
-                <h3>Recommendations for Reading</h3>
-              </article>
-            </Link>
-            {posts.length === 0 ? (
-              <p className="empty">No posts yet.</p>
-            ) : (
-              posts.map((post, i) => (
-                <Link key={i} to={`/blog/${post.entry_point.split('/')[0]}`} className="post-link">
-                  <article className="post-item">
-                    <h3>{post.title}</h3>
-                    <p>{fmt(post.date)}</p>
-                  </article>
-                </Link>
-              ))
-            )}
+            {posts.map((post, i) => (
+              <Link key={i} to={`/blog/${post.entry_point.split('/')[0]}`} className="post-link">
+                <article className={`post-item${post.pinned ? ' post-item--pinned' : ''}`}>
+                  {post.pinned && <div className="post-pin"><Pin size={13} strokeWidth={2} /><span>Pinned</span></div>}
+                  <h3>{post.title}</h3>
+                  {!post.pinned && <p>{fmt(post.date)}</p>}
+                </article>
+              </Link>
+            ))}
           </div>
         </section>
       </main>
