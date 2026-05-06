@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { Moon, Sun } from 'lucide-react'
-import { publicAsset } from './projectCover'
+
 import { Button } from './ui'
 import './App.css'
 
@@ -28,7 +28,7 @@ function App() {
   })
 
   useEffect(() => {
-    fetch(publicAsset('blog/metadata.json'))
+    fetch('/blog/metadata.json')
       .then(response => response.json())
       .then((data: BlogMetadata) => {
         const posts = Object.values(data)

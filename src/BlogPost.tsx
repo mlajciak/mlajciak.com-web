@@ -8,7 +8,6 @@ import rehypeSlug from 'rehype-slug'
 import 'katex/dist/katex.min.css'
 import { ALargeSmall, Moon, Sun } from 'lucide-react'
 import { Button } from './ui'
-import { publicAsset } from './projectCover'
 import './BlogPost.css'
 
 interface BlogMetadata {
@@ -51,7 +50,7 @@ export function BlogPost() {
   useEffect(() => {
     const loadBlogPost = async () => {
       try {
-        const metadataResponse = await fetch(publicAsset('blog/metadata.json'))
+        const metadataResponse = await fetch('/blog/metadata.json')
         const allMetadata: BlogMetadata = await metadataResponse.json()
         
         const postEntry = Object.entries(allMetadata).find(([_, post]) => {
@@ -62,7 +61,7 @@ export function BlogPost() {
         if (postEntry) {
           const [_, postMeta] = postEntry
           setMetadata(postMeta)
-          const contentResponse = await fetch(publicAsset(`blog/${postMeta.entry_point}`))
+          const contentResponse = await fetch(`/blog/${postMeta.entry_point}`)
           const text = await contentResponse.text()
           setContent(text)
         }
