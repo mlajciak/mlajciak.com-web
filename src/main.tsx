@@ -1,17 +1,17 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { HashRouter as Router, Routes, Route } from 'react-router-dom'
 import App from './App'
 import BlogPost from './BlogPost'
 import './index.css'
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <BrowserRouter>
+    <Router>
       <Routes>
         <Route path="/" element={<App />} />
         <Route path="/blog/:slug" element={<BlogPost />} />
       </Routes>
-    </BrowserRouter>
+    </Router>
   </React.StrictMode>,
 )
