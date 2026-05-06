@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { Moon, Sun } from 'lucide-react'
+import ReactMarkdown from 'react-markdown'
+import remarkGfm from 'remark-gfm'
 import './App.css'
 
 interface BlogPost {
@@ -11,6 +13,7 @@ interface BlogPost {
 
 export default function App() {
   const [posts, setPosts] = useState<BlogPost[]>([])
+  const [reading, setReading] = useState('')
   const [theme, setTheme] = useState<'light' | 'dark'>(
     () => (localStorage.getItem('theme') as 'light' | 'dark') || 'light'
   )
@@ -23,6 +26,10 @@ export default function App() {
         list.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
         setPosts(list)
       })
+  }, [])
+
+  useEffect(() => {
+    fetch('/recommendations.md').then(r => r.text()).then(setReading)
   }, [])
 
   useEffect(() => {
@@ -82,6 +89,13 @@ export default function App() {
                 </Link>
               ))
             )}
+          </div>
+        </section>
+
+        <section className="reading-section">
+          <h2>Recommendations</h2>
+          <div className="reading-body">
+            <ReactMarkdown remarkPlugins={[remarkGfm]}>{reading}</ReactMarkdown>
           </div>
         </section>
       </main>
