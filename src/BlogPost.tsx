@@ -14,6 +14,7 @@ interface PostMeta {
   date: string
   entry_point: string
   cover_image?: string
+  pinned?: boolean
 }
 
 export default function BlogPost() {
@@ -88,7 +89,7 @@ export default function BlogPost() {
         <article style={{ fontSize: `${fontSize}pt` }}>
           <header className="post-header">
             <h1>{meta.title}</h1>
-            <p className="post-date">{fmt(meta.date)}</p>
+            <p className="post-date">{meta.pinned ? 'Pinned' : fmt(meta.date)}</p>
           </header>
           <div className="post-body">
             <ReactMarkdown
