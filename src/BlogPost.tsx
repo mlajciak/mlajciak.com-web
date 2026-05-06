@@ -63,7 +63,7 @@ export default function BlogPost() {
       <nav className="blog-nav">
         <Link to="/" className="nav-brand">
           <div className="nav-photo"><img src="/photo.JPG" alt="Michal Lajčiak" /></div>
-          <span>Michal Lajčiak's blog</span>
+          <span>Michal Lajčiak's posts</span>
         </Link>
         <div className="nav-controls">
           <div className="font-controls">

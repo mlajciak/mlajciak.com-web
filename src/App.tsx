@@ -68,7 +68,7 @@ export default function App() {
 
       <main className="main">
         <section className="blog-section">
-          <h2>Blog</h2>
+          <h2>Posts</h2>
           <div className="post-list">
             <Link to="/recommendations" className="post-link">
               <article className="post-item post-item--pinned">
