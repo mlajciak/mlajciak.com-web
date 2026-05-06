@@ -1,8 +1,8 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import App from './App.tsx'
-import { BlogPost } from './BlogPost.tsx'
+import App from './App'
+import BlogPost from './BlogPost'
 import './index.css'
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
