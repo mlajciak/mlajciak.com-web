@@ -11,6 +11,13 @@ cpSync('dist/index.html', 'index.html');
 if (existsSync('assets')) rmSync('assets', { recursive: true });
 cpSync('dist/assets', 'assets', { recursive: true });
 
+// Copy blog folder to root (for GitHub Pages)
+if (existsSync('blog')) rmSync('blog', { recursive: true });
+cpSync('dist/blog', 'blog', { recursive: true });
+
+// Copy 404.html to root
+cpSync('dist/404.html', '404.html');
+
 // Git add, commit, push
 try {
   execSync('git add -A', { stdio: 'inherit' });

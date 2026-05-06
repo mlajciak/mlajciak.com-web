@@ -92,8 +92,8 @@ body[data-theme="dark"] .post-body h5,body[data-theme="dark"] .post-body h6 { co
 .post-body p { margin-bottom: 0.5cm; text-indent: 1cm; }
 .post-body p:first-of-type { text-indent: 0; }
 
-.post-body a { color: #000; text-decoration: underline; }
-body[data-theme="dark"] .post-body a { color: #e5e5e5; }
+.post-body a { color: #2563eb; text-decoration: underline; }
+body[data-theme="dark"] .post-body a { color: #60a5fa; }
 
 .post-body code {
   background: transparent; color: #000; font-size: 0.9em;
