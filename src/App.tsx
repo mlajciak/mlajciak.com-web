@@ -1,8 +1,6 @@
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import { Moon, Sun } from 'lucide-react'
-import ReactMarkdown from 'react-markdown'
-import remarkGfm from 'remark-gfm'
+import { Moon, Sun, Pin } from 'lucide-react'
 import './App.css'
 
 interface BlogPost {
@@ -13,7 +11,6 @@ interface BlogPost {
 
 export default function App() {
   const [posts, setPosts] = useState<BlogPost[]>([])
-  const [reading, setReading] = useState('')
   const [theme, setTheme] = useState<'light' | 'dark'>(
     () => (localStorage.getItem('theme') as 'light' | 'dark') || 'light'
   )
@@ -26,10 +23,6 @@ export default function App() {
         list.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
         setPosts(list)
       })
-  }, [])
-
-  useEffect(() => {
-    fetch('/recommendations.md').then(r => r.text()).then(setReading)
   }, [])
 
   useEffect(() => {
@@ -77,6 +70,12 @@ export default function App() {
         <section className="blog-section">
           <h2>Blog</h2>
           <div className="post-list">
+            <Link to="/recommendations" className="post-link">
+              <article className="post-item post-item--pinned">
+                <div className="post-pin"><Pin size={13} strokeWidth={2} /><span>Pinned</span></div>
+                <h3>Recommendations for Reading</h3>
+              </article>
+            </Link>
             {posts.length === 0 ? (
               <p className="empty">No posts yet.</p>
             ) : (
@@ -89,13 +88,6 @@ export default function App() {
                 </Link>
               ))
             )}
-          </div>
-        </section>
-
-        <section className="reading-section">
-          <h2>Recommendations</h2>
-          <div className="reading-body">
-            <ReactMarkdown remarkPlugins={[remarkGfm]}>{reading}</ReactMarkdown>
           </div>
         </section>
       </main>
