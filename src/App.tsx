@@ -73,7 +73,7 @@ export default function App() {
           <h2>Posts</h2>
           <div className="post-list">
             {posts.map((post, i) => (
-              <Link key={i} to={`/blog/${post.entry_point.split('/')[0]}`} className="post-link">
+              <Link key={i} to={`/post/${post.entry_point.split('/')[0]}`} className="post-link">
                 <article className={`post-item${post.pinned ? ' post-item--pinned' : ''}`}>
                   {post.pinned && <div className="post-pin"><Pin size={13} strokeWidth={2} /><span>Pinned</span></div>}
                   <h3>{post.title}</h3>

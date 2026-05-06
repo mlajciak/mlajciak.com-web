@@ -10,7 +10,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
     <Router>
       <Routes>
         <Route path="/" element={<App />} />
-        <Route path="/blog/:slug" element={<BlogPost />} />
+        <Route path="/post/:slug" element={<BlogPost />} />
       </Routes>
     </Router>
   </React.StrictMode>,
