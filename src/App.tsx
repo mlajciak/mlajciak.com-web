@@ -5,22 +5,6 @@ import { publicAsset } from './projectCover'
 import { Button } from './ui'
 import './App.css'
 
-interface Project {
-  name: string
-  description: string
-  url?: string
-  entry_point?: string
-  cover_image?: string
-}
-
-function isExternalProjectUrl(url?: string): boolean {
-  return Boolean(url && /^https?:\/\//i.test(url))
-}
-
-interface ProjectMetadata {
-  [key: string]: Project
-}
-
 interface BlogPost {
   title: string
   date: string
@@ -37,7 +21,6 @@ interface BlogMetadata {
 function App() {
   const POSTS_PER_PAGE = 4
   const [blogPosts, setBlogPosts] = useState<BlogPost[]>([])
-  const [projects, setProjects] = useState<Project[]>([])
   const [currentPage, setCurrentPage] = useState(1)
   const [theme, setTheme] = useState<'light' | 'dark'>(() => {
     const savedTheme = localStorage.getItem('theme')
@@ -54,15 +37,6 @@ function App() {
         setBlogPosts(posts)
       })
       .catch(error => console.error('Error loading blog posts:', error))
-  }, [])
-
-  useEffect(() => {
-    fetch(publicAsset('projects/project.json'))
-      .then((response) => response.json())
-      .then((data: ProjectMetadata) => {
-        setProjects(Object.values(data))
-      })
-      .catch((error) => console.error('Error loading projects:', error))
   }, [])
 
   const toggleTheme = () => {
@@ -107,13 +81,7 @@ function App() {
             <div className="profile-info">
               <h1 className="name">Michal Lajčiak</h1>
               <p className="bio">
-                I like safe general-purpose neural nets. 
-                <br />
-                Founder of {' '}
-                <a href="https://xyzt-lab.com" target="_blank" rel="noopener noreferrer" className="bio-link">
-                  XYZT
-                </a>
-                : AI-powered engineering workspace.
+                I like safe general-purpose neural nets.
               </p>
             </div>
           </div>
@@ -133,12 +101,6 @@ function App() {
                 <span>mlajciak</span>
               </a>
               
-              <a href="https://scholar.google.com/citations?user=RklBbaIAAAAJ&hl=sk" target="_blank" rel="noopener noreferrer" className="social-badge" title="Google Scholar">
-                <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18">
-                  <path d="M12 24a7 7 0 110-14 7 7 0 010 14zm0-24L0 9.5l4.838 3.94A8 8 0 0112 9a8 8 0 017.162 4.44L24 9.5z"/>
-                </svg>
-              <span>Scholar</span>
-            </a>
           </div>
         </div>
       </header>
@@ -190,54 +152,6 @@ function App() {
           </div>
         </div>
 
-        <div className="projects-section">
-          <h2 className="section-title">Projects</h2>
-          <div className="projects-list">
-            {projects.length === 0 ? (
-              <p className="no-posts">No projects yet.</p>
-            ) : (
-              projects.map((project, index) => {
-                const slug = project.entry_point?.split('/')[0]
-                const isExternal = isExternalProjectUrl(project.url)
-
-                const projectContent = (
-                  <article className="project-item">
-                    <h3 className="project-title">{project.name}</h3>
-                    <p className="project-description">{project.description}</p>
-                  </article>
-                )
-
-                if (isExternal) {
-                  return (
-                    <a
-                      key={`${project.name}-${index}`}
-                      href={project.url}
-                      className="project-link"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      {projectContent}
-                    </a>
-                  )
-                }
-
-                if (!slug) {
-                  return (
-                    <div key={`${project.name}-${index}`} className="project-link project-link--static">
-                      {projectContent}
-                    </div>
-                  )
-                }
-
-                return (
-                  <Link key={`${project.name}-${index}`} to={`/projects/${slug}`} className="project-link">
-                    {projectContent}
-                  </Link>
-                )
-              })
-            )}
-          </div>
-        </div>
       </main>
     </div>
   )
