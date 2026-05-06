@@ -144,6 +144,9 @@ body[data-theme="dark"] .reading-body h3 { color: #e5e5e5; }
     border-radius: 0;
     padding: 20px 16px;
   }
+  .header {
+    padding-top: 56px;
+  }
   .main { width: 100%; max-width: 100%; margin: 0 0 2cm; }
   .profile { gap: 16px; }
   .avatar { width: 64px; height: 64px; }
