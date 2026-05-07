@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import { Moon, Sun, Pin } from 'lucide-react'
+import { Pin } from 'lucide-react'
 import './App.css'
 
 interface BlogPost {
@@ -12,9 +12,6 @@ interface BlogPost {
 
 export default function App() {
   const [posts, setPosts] = useState<BlogPost[]>([])
-  const [theme, setTheme] = useState<'light' | 'dark'>(
-    () => (localStorage.getItem('theme') as 'light' | 'dark') || 'light'
-  )
 
   useEffect(() => {
     fetch('/blog/metadata.json')
@@ -27,25 +24,11 @@ export default function App() {
       })
   }, [])
 
-  useEffect(() => {
-    document.body.setAttribute('data-theme', theme)
-  }, [theme])
-
-  const toggleTheme = () => {
-    const next = theme === 'light' ? 'dark' : 'light'
-    setTheme(next)
-    localStorage.setItem('theme', next)
-  }
-
   const fmt = (d: string) =>
     new Date(d).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })
 
   return (
     <div className="container">
-      <button className="theme-toggle" onClick={toggleTheme} aria-label="Toggle theme">
-        {theme === 'light' ? <Moon size={18} strokeWidth={1.75} /> : <Sun size={18} strokeWidth={1.75} />}
-      </button>
-
       <header className="header">
         <div className="profile">
           <div className="avatar">

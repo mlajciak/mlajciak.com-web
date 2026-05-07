@@ -1,5 +1,5 @@
-.post-page { min-height: 100vh; background: #fff; transition: background 0.3s; }
-body[data-theme="dark"] .post-page { background: #1a1a1a; }
+.post-page { min-height: 100vh; background: #ffffff; transition: background 0.3s; }
+body[data-theme="dark"] .post-page { background: #0a0a0a; }
 
 .nav-wrap { padding: 16px 16px 0; }
 
@@ -17,7 +17,7 @@ body[data-theme="dark"] .post-page { background: #1a1a1a; }
   gap: 0.5cm;
   box-sizing: border-box;
 }
-body[data-theme="dark"] .blog-nav { background: #0f0f0f; border-color: #e5e5e5; }
+body[data-theme="dark"] .blog-nav { background: #050505; border-color: #e5e5e5; }
 
 .nav-brand { display: flex; align-items: center; gap: 0.3cm; text-decoration: none; color: inherit; padding: 2px 6px 2px 2px; }
 .nav-brand:hover span { opacity: 0.7; }
@@ -46,8 +46,8 @@ body[data-theme="dark"] .nav-photo { border-color: #e5e5e5; }
 .font-controls button:first-child { border-radius: 12px 0 0 12px; }
 .font-controls button:last-child { border-radius: 0 12px 12px 0; border-left: none; }
 .font-controls button:hover { background: #e8e8e8; }
-body[data-theme="dark"] .font-controls button { background: #2a2a2a; border-color: #e5e5e5; color: #e5e5e5; }
-body[data-theme="dark"] .font-controls button:hover { background: #333; }
+body[data-theme="dark"] .font-controls button { background: #111; border-color: #e5e5e5; color: #e5e5e5; }
+body[data-theme="dark"] .font-controls button:hover { background: #222; }
 
 .theme-btn {
   width: 1.2cm; height: 1.2cm;
@@ -60,9 +60,9 @@ body[data-theme="dark"] .font-controls button:hover { background: #333; }
   align-items: center;
   justify-content: center;
 }
-body[data-theme="dark"] .theme-btn { background: #2a2a2a; border-color: #e5e5e5; color: #e5e5e5; }
+body[data-theme="dark"] .theme-btn { background: #111; border-color: #e5e5e5; color: #e5e5e5; }
 .theme-btn:hover { background: #e8e8e8; }
-body[data-theme="dark"] .theme-btn:hover { background: #333; }
+body[data-theme="dark"] .theme-btn:hover { background: #222; }
 
 .post-container { max-width: 18cm; margin: 0 auto; padding: 2cm 0 3cm; box-sizing: border-box; }
 

@@ -1,51 +1,31 @@
 .container {
   min-height: 100vh;
-  background: #fff;
+  background: url('/bg.jpg') center top / cover no-repeat;
+  background-color: #1a1a1a;
   position: relative;
-  transition: background 0.3s;
+  padding-top: 16px;
 }
-body[data-theme="dark"] .container { background: #1a1a1a; }
-
-.theme-toggle {
-  position: absolute;
-  top: 0.5cm;
-  right: 0.5cm;
-  width: 34px;
-  height: 34px;
-  border-radius: 50%;
-  border: 1px solid #000;
-  background: #f5f5f5;
-  color: #000;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 10;
-}
-body[data-theme="dark"] .theme-toggle { background: #2a2a2a; border-color: #e5e5e5; color: #e5e5e5; }
 
 .header {
   width: 19.5cm;
   max-width: calc(100% - 32px);
   margin: 16px auto 0;
   padding: 0.8cm 1.5cm;
-  background: #f8f8f8;
+  background: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
   border: 1px solid #000;
   border-radius: 0.5cm;
   box-sizing: border-box;
 }
-body[data-theme="dark"] .header { background: #0f0f0f; border-color: #e5e5e5; }
 
 .profile { display: flex; align-items: center; gap: 1cm; margin-bottom: 0.5cm; }
 
 .avatar { width: 3cm; height: 3cm; border-radius: 50%; overflow: hidden; border: 1px solid #000; flex-shrink: 0; }
-body[data-theme="dark"] .avatar { border-color: #e5e5e5; }
 .avatar img { width: 100%; height: 100%; object-fit: cover; }
 
 .info h1 { font-size: 22pt; font-weight: 700; color: #000; }
-body[data-theme="dark"] .info h1 { color: #e5e5e5; }
 .info p { font-size: 13pt; color: #333; }
-body[data-theme="dark"] .info p { color: #ccc; }
 
 .social { display: flex; gap: 0.5cm; flex-wrap: wrap; }
 .badge {
@@ -62,9 +42,7 @@ body[data-theme="dark"] .info p { color: #ccc; }
   font-size: 11pt;
   font-weight: 600;
 }
-body[data-theme="dark"] .badge { background: #2a2a2a; border-color: #e5e5e5; color: #e5e5e5; }
 .badge:hover { background: #e8e8e8; }
-body[data-theme="dark"] .badge:hover { background: #333; }
 
 .main {
   width: 19.5cm;
@@ -72,10 +50,16 @@ body[data-theme="dark"] .badge:hover { background: #333; }
   margin: 16px auto 2cm;
 }
 
-.blog-section { padding: 0.8cm 1.5cm; background: #f8f8f8; border: 1px solid #000; border-radius: 0.5cm; box-sizing: border-box; }
-body[data-theme="dark"] .blog-section { background: #0f0f0f; border-color: #e5e5e5; }
+.blog-section {
+  padding: 0.8cm 1.5cm;
+  background: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  border: 1px solid #000;
+  border-radius: 0.5cm;
+  box-sizing: border-box;
+}
 .blog-section h2 { font-size: 20pt; font-weight: 700; margin-bottom: 0.6cm; color: #000; }
-body[data-theme="dark"] .blog-section h2 { color: #e5e5e5; }
 
 .post-list { display: flex; flex-direction: column; }
 
@@ -87,16 +71,12 @@ body[data-theme="dark"] .blog-section h2 { color: #e5e5e5; }
   transition: opacity 0.2s;
 }
 .post-item:last-child { border-bottom: none; }
-body[data-theme="dark"] .post-item { border-color: #555; }
 .post-link:hover .post-item { opacity: 0.7; }
 
 .post-item h3 { font-size: 15pt; font-weight: 700; color: #000; }
-body[data-theme="dark"] .post-item h3 { color: #e5e5e5; }
 .post-item p { font-size: 11pt; color: #666; font-style: italic; font-family: "JetBrains Mono", monospace; }
-body[data-theme="dark"] .post-item p { color: #999; }
 
 .post-item--pinned { border-bottom: 1px solid #ccc; }
-body[data-theme="dark"] .post-item--pinned { border-color: #555; }
 
 .post-pin {
   display: inline-flex;
@@ -110,21 +90,9 @@ body[data-theme="dark"] .post-item--pinned { border-color: #555; }
   text-transform: uppercase;
   letter-spacing: 0.04em;
 }
-body[data-theme="dark"] .post-pin { color: #666; }
 
 @media (max-width: 600px) {
-  .reading-section {
-    margin-top: 0;
-    border-left: none; border-right: none; border-top: none;
-    border-radius: 0;
-    padding: 20px 16px;
-  }
-  .reading-body { font-size: 12pt; }
-  .reading-body ul, .reading-body ol { margin-left: 20px; }
-}
-
-@media (max-width: 600px) {
-  .theme-toggle { top: 12px; right: 12px; }
+  .container { padding-top: 0; }
   .header, .blog-section {
     width: 100%;
     max-width: 100%;
@@ -137,7 +105,8 @@ body[data-theme="dark"] .post-pin { color: #666; }
     padding: 20px 16px;
   }
   .header {
-    padding-top: 56px;
+    margin-top: 0;
+    padding-top: 20px;
   }
   .main { width: 100%; max-width: 100%; margin: 0 0 2cm; }
   .profile { gap: 16px; }
