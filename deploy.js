@@ -1,5 +1,5 @@
 import { execSync } from 'child_process';
-import { cpSync, readFileSync, writeFileSync, rmSync, existsSync } from 'fs';
+import { cpSync, readdirSync, readFileSync, writeFileSync, rmSync, existsSync, statSync } from 'fs';
 
 // Save the dev index.html
 const devIndex = readFileSync('index.html', 'utf8');
@@ -14,6 +14,15 @@ cpSync('dist/assets', 'assets', { recursive: true });
 // Copy blog folder to root (for GitHub Pages)
 if (existsSync('blog')) rmSync('blog', { recursive: true });
 cpSync('dist/blog', 'blog', { recursive: true });
+
+// Copy all other root-level files from dist (e.g. bg.jpg, favicon.jpg, photo.JPG)
+const skipFiles = new Set(['index.html', '404.html']);
+const skipDirs = new Set(['assets', 'blog']);
+for (const entry of readdirSync('dist')) {
+  if (skipFiles.has(entry) || skipDirs.has(entry)) continue;
+  const src = `dist/${entry}`;
+  if (statSync(src).isFile()) cpSync(src, entry);
+}
 
 // Copy 404.html to root
 cpSync('dist/404.html', '404.html');
