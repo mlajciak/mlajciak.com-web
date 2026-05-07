@@ -18,7 +18,7 @@ cpSync('dist/blog', 'blog', { recursive: true });
 // Copy 404.html to root
 cpSync('dist/404.html', '404.html');
 
-// Git add, commit, push
+// Git add, commit, push (with the built index.html in place)
 try {
   execSync('git add -A', { stdio: 'inherit' });
   execSync('git commit -m "deploy"', { stdio: 'inherit' });
@@ -27,6 +27,10 @@ try {
   console.log('Git operations completed (or nothing to commit)');
 }
 
-// Restore dev index.html
+// Restore dev index.html after pushing
 writeFileSync('index.html', devIndex);
+// Unstage the restored dev index.html so it doesn't show as modified
+try {
+  execSync('git checkout -- index.html', { stdio: 'inherit' });
+} catch (e) {}
 console.log('Deploy complete. Dev index.html restored.');
