@@ -19,8 +19,9 @@ body[data-theme="dark"] .post-page { background: #0a0a0a; }
 }
 body[data-theme="dark"] .blog-nav { background: #050505; border-color: #e5e5e5; }
 
-.nav-brand { display: flex; align-items: center; gap: 0.3cm; text-decoration: none; color: inherit; padding: 2px 6px 2px 2px; }
-.nav-brand:hover span { opacity: 0.7; }
+.nav-brand { display: flex; align-items: center; gap: 0.3cm; text-decoration: none; color: inherit; padding: 2px 10px 2px 2px; border-radius: 100px; transition: background 0.15s; }
+.nav-brand:hover { background: #e8e8e8; }
+body[data-theme="dark"] .nav-brand:hover { background: #1f1f1f; }
 .nav-brand span { font-size: 12pt; font-weight: 700; white-space: nowrap; color: #000; }
 body[data-theme="dark"] .nav-brand span { color: #e5e5e5; }
 

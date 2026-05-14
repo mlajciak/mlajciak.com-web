@@ -38,8 +38,4 @@ try {
 
 // Restore dev index.html after pushing
 writeFileSync('index.html', devIndex);
-// Unstage the restored dev index.html so it doesn't show as modified
-try {
-  execSync('git checkout -- index.html', { stdio: 'inherit' });
-} catch (e) {}
 console.log('Deploy complete. Dev index.html restored.');
