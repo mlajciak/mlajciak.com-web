@@ -13,12 +13,5 @@
         "description": "",
         "entry_point": "recommendations/recommendations.md",
         "pinned": true
-    },
-    "2":{
-        "title": "Notes on DeepSeek 4 Paper",
-        "date": "2026-05-08",
-        "tags": [""],
-        "description": "",
-        "entry_point": "notes_ds4/ds4.md"
     }
 }
