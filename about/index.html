@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="/favicon.png" type="image/png">
+  <title>About — Michal Lajčiak</title>
+  <link rel="stylesheet" href="/css/site.css">
+  <script>
+    (function () {
+      var t = localStorage.getItem("theme");
+      if (t === "system") {
+        t = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+      }
+      if (t === "dark" || t === "light") {
+        document.documentElement.setAttribute("data-theme", t);
+      }
+    })();
+  </script>
+</head>
+<body>
+  <div class="site">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <ol>
+        <li><a href="/">Michal Lajčiak</a></li>
+        <li aria-current="page">About</li>
+      </ol>
+    </nav>
+
+    <div id="about-content" class="post-body"></div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/marked@15.0.0/marked.min.js"></script>
+  <script src="/js/about.js"></script>
+  <script src="/js/theme.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="/favicon.png" type="image/png">
+  <title>Stepper — xyzt</title>
+  <link rel="stylesheet" href="/css/site.css">
+  <script>
+    (function () {
+      var t = localStorage.getItem("theme");
+      if (t === "system") {
+        t = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+      }
+      if (t === "dark" || t === "light") {
+        document.documentElement.setAttribute("data-theme", t);
+      }
+    })();
+  </script>
+</head>
+<body class="xyzt-page">
+  <div class="site site--xyzt">
+    <div class="site-header-bar">
+    <nav class="breadcrumb xyzt-header" aria-label="Site">
+      <a class="xyzt-header__logo" href="/xyzt/">
+        <svg class="logo-xyzt" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 171" role="img" aria-label="xyzt"><path d="M22.0557 143H11.2012L63.0615 82.3262L15.7471 19.9824H40.332L76.0498 67.2041L116.313 19.9824H127.261L81.0596 73.9766L133.477 143H108.706L68.0713 89.0986L22.0557 143ZM155.278 19.9824L197.954 82.3262L240.444 19.9824H251.67L203.984 89.8408V143H183.296V91.7891L134.126 19.9824H155.278ZM370.513 19.9824L281.543 135.021H370.513V143H253.711V139.938L340.083 27.9609H253.711V19.9824H370.513ZM485.181 19.9824V27.9609H440.649V143H419.961V27.9609H375.43V19.9824H485.181Z" fill="currentColor"/></svg>
+      </a>
+      <div class="links xyzt-nav" role="navigation" aria-label="Projects">
+        <a href="/xyzt/nano/" class="xyzt-pill">
+          <svg class="link-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5a3 3 0 1 0-5.997.125 4 4 0 0 0-2.526 5.77 4 4 0 0 0 .556 6.588A4 4 0 1 0 12 18Z"/><path d="M12 5a3 3 0 1 1 5.997.125 4 4 0 0 1 2.526 5.77 4 4 0 0 1-.556 6.588A4 4 0 1 1 12 18Z"/><path d="M15 13a4.5 4.5 0 0 1-3-4 4.5 4.5 0 0 1-3 4"/><path d="M9 13h6"/></svg>
+          NaNo
+        </a>
+        <a href="/xyzt/stepper/" class="xyzt-pill xyzt-pill--active" aria-current="page">
+          <svg class="link-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16V8z"/><path d="M3.3 7 12 12 20.7 7"/><path d="M12 12V22"/></svg>
+          Stepper
+        </a>
+      </div>
+    </nav>
+    <button type="button" id="theme-toggle" class="theme-toggle" aria-label="Theme"></button>
+    </div>
+    <main class="xyzt-hero" data-md="/xyzt/stepper/stepper.md">
+      <div class="xyzt-hero__intro">
+        <h1 class="xyzt-tagline">
+          <span
+            class="xyzt-typewriter"
+            data-text="dLLM-CAD Engine For Your Agent"
+          ></span><span class="xyzt-typewriter-cursor" aria-hidden="true"></span>
+        </h1>
+      </div>
+      <div class="xyzt-project-reveal">
+        <div class="xyzt-project-content post-body"></div>
+      </div>
+    </main>
+    <footer class="xyzt-footer">
+      <p>© Created by <a href="/">Michal Lajčiak</a>. All rights reserved.</p>
+    </footer>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/marked@15.0.0/marked.min.js"></script>
+  <script src="/js/theme.js" defer></script>
+  <script src="/js/xyzt-typewriter-core.js" defer></script>
+  <script src="/js/xyzt-project.js" defer></script>
+</body>
+</html>

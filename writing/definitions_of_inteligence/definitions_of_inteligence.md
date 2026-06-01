@@ -1,0 +1,1 @@
+What is the correct way to define intelligence. What should be considered AGI (Artificial General Intelligence) and what ASI (Artificial Super Intelligence)? Where do humans stand here? There are no industry-wide accepted answers to these questions. In this post, I have summarized opinions of various researchers, CEOs adn thinkers on these questions and added my own opinions.

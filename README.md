@@ -1,25 +1,5 @@
-# mlajciak.com-web
+# mlajciak.com
 
-React web application built with Vite and TypeScript.
+Static site — HTML and CSS only. GitHub Pages serves the repo root.
 
-## Development
-
-```bash
-# Install dependencies
-npm install
-
-# Start development server
-npm run dev
-
-# Build for production
-npm run build
-
-# Preview production build
-npm run preview
-```
-
-## Tech Stack
-
-- React 19
-- TypeScript
-- Vite
+Edit `index.html`, `css/site.css`, `about/about.md`, and `writing/<slug>/` directly, then push to `main`.

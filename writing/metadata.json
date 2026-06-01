@@ -1,0 +1,17 @@
+{
+    "0":{
+        "title": "Brief Overview of Transformer",
+        "date": "2026-03-02",
+        "tags": [""],
+        "description": "",
+        "entry_point": "transformer_architecture/transformer_architecture.md"
+    },
+    "1":{
+        "title": "Definitions of Intelligence",
+        "date": "2026-05-31",
+        "tags": [""],
+        "description": "",
+        "published": false,
+        "entry_point": "definitions_of_inteligence/definitions_of_inteligence.md"
+    }
+}

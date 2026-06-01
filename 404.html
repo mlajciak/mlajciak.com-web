@@ -1,10 +1,33 @@
 <!DOCTYPE html>
-<script>
-  var l = window.location;
-  l.replace(
-    l.protocol + '//' + l.host + '/?/' +
-    l.pathname.slice(1).replace(/&/g, '~and~') +
-    (l.search ? '&' + l.search.slice(1).replace(/&/g, '~and~') : '') +
-    l.hash
-  );
-</script>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Not found — Michal Lajčiak</title>
+  <link rel="icon" href="/favicon.png" type="image/png">
+  <link rel="stylesheet" href="/css/site.css">
+  <script>
+    (function () {
+      var t = localStorage.getItem("theme");
+      if (t === "system") {
+        t = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+      }
+      if (t === "dark" || t === "light") {
+        document.documentElement.setAttribute("data-theme", t);
+      }
+    })();
+  </script>
+</head>
+<body>
+  <div class="site">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <ol>
+        <li><a href="/">Michal Lajčiak</a></li>
+        <li aria-current="page">Not found</li>
+      </ol>
+    </nav>
+    <p class="tagline">Page not found.</p>
+  </div>
+  <script src="/js/theme.js" defer></script>
+</body>
+</html>
