@@ -1,5 +1,5 @@
 # mlajciak.com
 
-Static site — HTML and CSS only. GitHub Pages serves the repo root.
+Static site — one page (`index.html`) and one stylesheet (`style.css`). GitHub Pages serves the repo root.
 
-Edit `index.html`, `css/site.css`, `about/about.md`, and `writing/<slug>/` directly, then push to `main`.
+Edit `index.html` and `style.css`, then push to `main`. About and writing live in the same HTML file (`#about`, `#writing`).

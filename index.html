@@ -6,7 +6,7 @@
   <meta name="description" content="Michal Lajčiak — writing on ML and safety.">
   <link rel="icon" href="/favicon.png" type="image/png">
   <title>Michal Lajčiak</title>
-  <link rel="stylesheet" href="/css/site.css">
+  <link rel="stylesheet" href="/style.css">
   <script>
     (function () {
       var t = localStorage.getItem("theme");
@@ -19,36 +19,427 @@
     })();
   </script>
 </head>
-<body>
+<body class="home-page">
+  <button type="button" id="theme-toggle" class="theme-toggle" aria-label="Theme">
+    <span class="theme-toggle__icon theme-toggle__icon--dark" aria-hidden="true">
+      <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
+    </span>
+    <span class="theme-toggle__icon theme-toggle__icon--light" aria-hidden="true">
+      <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+    </span>
+  </button>
+
   <div class="site">
-    <header class="intro">
-      <img class="avatar" src="/photo.JPG" alt="Michal Lajčiak" width="128" height="128">
-      <div class="intro-main">
-        <div class="identity">
-          <h1>Michal Lajčiak</h1>
-          <p class="tagline">I like safe general-purpose neural nets.</p>
+    <section id="view-home" class="view">
+      <header class="intro">
+        <img class="avatar" src="/photo.JPG" alt="Michal Lajčiak" width="128" height="128">
+        <div class="intro-main">
+          <div class="identity">
+            <h1>Michal Lajčiak</h1>
+            <p class="tagline">I like safe general-purpose neural nets.</p>
+          </div>
+          <nav class="links" aria-label="Site">
+            <a href="#" class="home-nav-link" data-panel="writing" aria-expanded="false">
+              <svg class="link-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg>
+              <span class="link-label" data-text="Writing">Writing</span>
+            </a>
+            <a href="#" class="home-nav-link" data-panel="about" aria-expanded="false">
+              <svg class="link-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-6 8-6s8 2 8 6"/></svg>
+              <span class="link-label" data-text="About">About</span>
+            </a>
+            <a href="https://x.com/lajciakmichal" target="_blank" rel="noopener noreferrer" aria-label="Social Media" class="link-expand">
+              <svg class="link-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+              <span class="link-expand__slot"><span class="link-expand__suffix link-label" data-text="/lajciakmichal">/lajciakmichal</span></span>
+            </a>
+            <a href="https://github.com/mlajciak" target="_blank" rel="noopener noreferrer" aria-label="Code" class="link-expand">
+              <svg class="link-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+              <span class="link-expand__slot"><span class="link-expand__suffix link-label" data-text="/mlajciak">/mlajciak</span></span>
+            </a>
+          </nav>
         </div>
-        <nav class="links" aria-label="Site">
-        <a href="/writing/">
-          <svg class="link-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg>
-          Writing
-        </a>
-        <a href="/about/">
-          <svg class="link-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-6 8-6s8 2 8 6"/></svg>
-          About
-        </a>
-        <a href="https://x.com/lajciakmichal" target="_blank" rel="noopener noreferrer" aria-label="Social Media" class="link-expand">
-          <svg class="link-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-          <span class="link-expand__suffix">/lajciakmichal</span>
-        </a>
-        <a href="https://github.com/mlajciak" target="_blank" rel="noopener noreferrer" aria-label="Code" class="link-expand">
-          <svg class="link-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
-          <span class="link-expand__suffix">/mlajciak</span>
-        </a>
-        </nav>
+      </header>
+
+      <div id="home-panel" class="home-panel" aria-live="polite">
+        <div class="home-panel__inner">
+          <div id="about-content" class="home-panel__pane post-body" hidden>
+            <h2>About Me &amp; Interests</h2>
+            <p>I started programming at age 11 and built embedded systems plus 3D-printed robotic platforms while studying Mechatronics at Stredná priemyselná škola Dubnica nad Váhom. Early work included reinforcement learning for control and hybrid multi-robot planning (RRT-APF with neural task allocation) on differential-drive platforms, published in Sensors 2025. My current focus is on diffusion models for generative AI and their use in automated design and engineering pipelines. I am pursuing a BSc in Computer Science at Aarhus University.</p>
+            <div class="about-photos">
+              <figure class="about-photo">
+                <img src="/about/isef.jpg" alt="" loading="lazy" decoding="async" width="400" height="300">
+                <figcaption>ISEF 2024, Los Angeles</figcaption>
+              </figure>
+              <figure class="about-photo">
+                <img src="/about/s3.jpg" alt="" loading="lazy" decoding="async" width="400" height="300">
+                <figcaption>Presenting at Presidential Summit S3, Slavkov 2025</figcaption>
+              </figure>
+              <figure class="about-photo">
+                <img src="/about/sus.jpg" alt="" loading="lazy" decoding="async" width="400" height="300">
+                <figcaption>YC AI SUS 2025 attendee</figcaption>
+              </figure>
+              <figure class="about-photo">
+                <img src="/about/photo2.jpg" alt="" loading="lazy" decoding="async" width="400" height="300">
+                <figcaption>Himmelbjerget, 2025</figcaption>
+              </figure>
+            </div>
+            <h2>Misc &amp; Awards</h2>
+            <ul>
+              <li>ISEF 2024: 1st Place, Robotics &amp; Intelligent Machines; Mawhiba ISEF Special Award</li>
+              <li>Scientific Talent of the Slovak Academy of Sciences, 2023</li>
+              <li>ISTROBOT 2023: 1st Place</li>
+              <li>National Centre of Robotics Award, AMAVET National Science Fair, 2024</li>
+              <li>Publication: <a href="https://www.mdpi.com/1424-8220/25/13/3886">Swarm Control with RRT-APF Planning and FNN Task Allocation Tested on Mobile Differential Platform</a> (Sensors, 2025)</li>
+              <li>Presented project at S3 Presidential Summit, Slavkov Castle (2025) to presidents and delegations of Slovakia, Austria and Czechia</li>
+              <li>IELTS 7.5</li>
+            </ul>
+            <h2>Press</h2>
+            <p>
+              <a href="https://dennikn.sk/4045178/michal-lajciak-zvitazil-v-celosvetovej-sutazi-roboty-chce-vyuzit-v-tovarnach-buducnosti/">1</a>
+              <a href="https://vedanadosah.cvtisr.sk/technika/informacne-a-komunikacne-technologie/podcast-vitaz-zo-sutaze-v-usa-najst-dobry-napad-je-niekedy-tazsie-ako-realizacia/">2</a>
+              <a href="https://www.startitup.sk/17-rocny-vedec-michal-ohuril-svet-svojim-robotom-prezradil-tipy-vdaka-ktorym-exceluje-v-medzinarodnej-elite/">3</a>
+              <a href="https://www.youtube.com/watch?v=Tf_jz3pwUTo">4</a>
+              <a href="https://www.atpjournal.sk/rubriky/rozhovory/nasleduj-alberta-michal-lajciak.html?page_id=40656">5</a>
+            </p>
+          </div>
+          <div id="home-writing" class="home-panel__pane" hidden>
+            <p class="writing-empty">
+              <span id="writing-empty-crypt" class="crypt-idle" data-text="No articles yet.">No articles yet.</span>
+            </p>
+            <ul class="post-list" hidden></ul>
+          </div>
+        </div>
       </div>
-    </header>
+    </section>
   </div>
-  <script src="/js/theme.js" defer></script>
+
+  <script>
+    (function () {
+      var STORAGE_KEY = "theme";
+      var ORDER = ["dark", "light"];
+      var LABELS = { dark: "Theme: dark", light: "Theme: light" };
+
+      function resolveTheme(value) {
+        if (value === "dark" || value === "light") return value;
+        return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+      }
+
+      function getStored() {
+        return resolveTheme(localStorage.getItem(STORAGE_KEY));
+      }
+
+      function applyTheme(theme) {
+        var resolved = resolveTheme(theme);
+        document.documentElement.setAttribute("data-theme", resolved);
+        var btn = document.getElementById("theme-toggle");
+        if (btn) {
+          btn.setAttribute("data-theme-state", resolved);
+          btn.setAttribute("aria-label", LABELS[resolved]);
+        }
+      }
+
+      function initTheme() {
+        var stored = localStorage.getItem(STORAGE_KEY);
+        if (stored === "system") localStorage.setItem(STORAGE_KEY, getStored());
+        applyTheme(getStored());
+        var btn = document.getElementById("theme-toggle");
+        if (btn && !btn.dataset.bound) {
+          btn.dataset.bound = "1";
+          btn.addEventListener("click", function () {
+            var current = getStored();
+            var i = ORDER.indexOf(current);
+            var updated = ORDER[(i + 1) % ORDER.length];
+            localStorage.setItem(STORAGE_KEY, updated);
+            applyTheme(updated);
+          });
+        }
+      }
+
+      function easeOutCubic(t) {
+        return 1 - Math.pow(1 - t, 3);
+      }
+
+      var scrollAnimId = null;
+      var wheelTarget = null;
+      var wheelCurrent = null;
+      var wheelRaf = null;
+
+      function maxScrollY() {
+        return Math.max(0, document.documentElement.scrollHeight - window.innerHeight);
+      }
+
+      function syncWheelScroll() {
+        wheelTarget = window.scrollY;
+        wheelCurrent = window.scrollY;
+      }
+
+      function smoothScrollTo(y, duration) {
+        duration = duration || 650;
+        var startY = window.scrollY;
+        var targetY = Math.max(0, Math.min(y, maxScrollY()));
+        var distance = targetY - startY;
+
+        if (Math.abs(distance) < 2) return;
+
+        if (cryptReducedMotion) {
+          window.scrollTo(0, targetY);
+          syncWheelScroll();
+          return;
+        }
+
+        if (scrollAnimId) cancelAnimationFrame(scrollAnimId);
+        wheelRaf = null;
+
+        var startTime = performance.now();
+
+        function step(now) {
+          var progress = easeOutCubic(Math.min(1, (now - startTime) / duration));
+          window.scrollTo(0, startY + distance * progress);
+          if (progress < 1) {
+            scrollAnimId = requestAnimationFrame(step);
+          } else {
+            scrollAnimId = null;
+            syncWheelScroll();
+          }
+        }
+
+        scrollAnimId = requestAnimationFrame(step);
+      }
+
+      function smoothScrollToElement(el, offset, duration) {
+        if (!el) return;
+        offset = offset || 0;
+        smoothScrollTo(el.getBoundingClientRect().top + window.scrollY + offset, duration);
+      }
+
+      function initSmoothScrolling() {
+        if (cryptReducedMotion) return;
+        if (!window.matchMedia("(hover: hover) and (pointer: fine)").matches) return;
+
+        syncWheelScroll();
+
+        function wheelTick() {
+          wheelCurrent += (wheelTarget - wheelCurrent) * 0.1;
+          if (Math.abs(wheelTarget - wheelCurrent) < 0.5) {
+            wheelCurrent = wheelTarget;
+            window.scrollTo(0, wheelCurrent);
+            wheelRaf = null;
+            return;
+          }
+          window.scrollTo(0, wheelCurrent);
+          wheelRaf = requestAnimationFrame(wheelTick);
+        }
+
+        function scheduleWheelTick() {
+          if (!wheelRaf && !scrollAnimId) wheelRaf = requestAnimationFrame(wheelTick);
+        }
+
+        window.addEventListener(
+          "wheel",
+          function (e) {
+            if (scrollAnimId) return;
+            if (e.ctrlKey || e.metaKey) return;
+            wheelTarget = Math.max(0, Math.min(wheelTarget + e.deltaY, maxScrollY()));
+            e.preventDefault();
+            scheduleWheelTick();
+          },
+          { passive: false }
+        );
+
+        window.addEventListener(
+          "scroll",
+          function () {
+            if (!wheelRaf && !scrollAnimId) syncWheelScroll();
+          },
+          { passive: true }
+        );
+      }
+
+      var currentPanel = null;
+      var CRYPT_CHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789_./";
+      var cryptReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      var writingCryptTimer = null;
+      var writingCryptEl = null;
+
+      function scrambleLabel(el, text, decrypting, onDone) {
+        if (cryptReducedMotion) {
+          el.textContent = text;
+          if (onDone) onDone();
+          return;
+        }
+
+        if (el._cryptAnim) {
+          cancelAnimationFrame(el._cryptAnim);
+          el._cryptAnim = null;
+        }
+
+        var start = performance.now();
+        var duration = Math.min(320, text.length * 35);
+
+        function tick(now) {
+          var progress = Math.min(1, (now - start) / duration);
+          var revealed = decrypting
+            ? Math.ceil(progress * text.length)
+            : Math.floor((1 - progress) * text.length);
+
+          el.textContent = text
+            .split("")
+            .map(function (ch, i) {
+              if (ch === " ") return ch;
+              if (i < revealed) return ch;
+              return CRYPT_CHARS[Math.floor(Math.random() * CRYPT_CHARS.length)];
+            })
+            .join("");
+
+          if (progress < 1) {
+            el._cryptAnim = requestAnimationFrame(tick);
+          } else {
+            el.textContent = text;
+            el._cryptAnim = null;
+            if (onDone) onDone();
+          }
+        }
+
+        el._cryptAnim = requestAnimationFrame(tick);
+      }
+
+      function stopWritingIdleCrypt() {
+        if (writingCryptTimer) {
+          clearTimeout(writingCryptTimer);
+          writingCryptTimer = null;
+        }
+        if (writingCryptEl && writingCryptEl._cryptAnim) {
+          cancelAnimationFrame(writingCryptEl._cryptAnim);
+          writingCryptEl._cryptAnim = null;
+        }
+        if (writingCryptEl) {
+          writingCryptEl.textContent = writingCryptEl.getAttribute("data-text");
+        }
+      }
+
+      function startWritingIdleCrypt() {
+        stopWritingIdleCrypt();
+        var el = document.getElementById("writing-empty-crypt");
+        if (!el) return;
+
+        writingCryptEl = el;
+        var text = el.getAttribute("data-text") || el.textContent.trim();
+        el.setAttribute("data-text", text);
+
+        if (cryptReducedMotion) {
+          el.textContent = text;
+          return;
+        }
+
+        var decrypting = true;
+
+        function loop() {
+          if (currentPanel !== "writing") return;
+          scrambleLabel(el, text, decrypting, function () {
+            writingCryptTimer = setTimeout(function () {
+              decrypting = !decrypting;
+              loop();
+            }, decrypting ? 2400 : 600);
+          });
+        }
+
+        loop();
+      }
+
+      function showPanel(name) {
+        var panelEl = document.getElementById("home-panel");
+        var navLinks = document.querySelectorAll(".home-nav-link");
+        var panes = {
+          about: document.getElementById("about-content"),
+          writing: document.getElementById("home-writing"),
+        };
+
+        stopWritingIdleCrypt();
+
+        navLinks.forEach(function (a) {
+          var panel = a.getAttribute("data-panel");
+          var active = panel === name;
+          a.classList.toggle("is-active", active);
+          a.setAttribute("aria-expanded", active ? "true" : "false");
+        });
+
+        if (!name || name === "home") {
+          panelEl.classList.remove("is-open");
+          Object.keys(panes).forEach(function (key) {
+            if (panes[key]) panes[key].hidden = true;
+          });
+          currentPanel = null;
+          var intro = document.querySelector(".intro");
+          if (intro && intro.getBoundingClientRect().top < -40) {
+            smoothScrollToElement(intro, -16, 500);
+          }
+          return;
+        }
+
+        Object.keys(panes).forEach(function (key) {
+          if (panes[key]) panes[key].hidden = key !== name;
+        });
+
+        panelEl.classList.add("is-open");
+        currentPanel = name;
+
+        if (name === "writing") {
+          startWritingIdleCrypt();
+          requestAnimationFrame(function () {
+            var target = document.getElementById("writing-empty-crypt") || panes.writing;
+            smoothScrollToElement(target, -16, 500);
+          });
+          return;
+        }
+
+        requestAnimationFrame(function () {
+          smoothScrollToElement(panes[name], -16, 650);
+        });
+      }
+
+      function initCryptLabels() {
+        document.querySelectorAll(".home-nav-link").forEach(function (link) {
+          var label = link.querySelector(".link-label");
+          if (!label) return;
+
+          var text = label.getAttribute("data-text") || label.textContent.trim();
+          label.setAttribute("data-text", text);
+          label.textContent = text;
+
+          link.addEventListener("mouseenter", function () {
+            scrambleLabel(label, text, true);
+          });
+          link.addEventListener("mouseleave", function () {
+            scrambleLabel(label, text, false);
+          });
+          link.addEventListener("focus", function () {
+            scrambleLabel(label, text, true);
+          });
+          link.addEventListener("blur", function () {
+            scrambleLabel(label, text, false);
+          });
+        });
+      }
+
+      document.querySelectorAll(".home-nav-link").forEach(function (a) {
+        a.addEventListener("click", function (e) {
+          e.preventDefault();
+          var panel = a.getAttribute("data-panel");
+          if (currentPanel === panel) {
+            showPanel("home");
+            return;
+          }
+          showPanel(panel);
+        });
+      });
+
+      if (location.hash) {
+        history.replaceState(null, "", location.pathname + location.search);
+      }
+
+      initTheme();
+      initCryptLabels();
+      initSmoothScrolling();
+    })();
+  </script>
 </body>
 </html>
