@@ -2,11 +2,67 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta http-equiv="refresh" content="0;url=/">
-  <link rel="canonical" href="/">
-  <title>Redirecting…</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Writing by Michal Lajčiak.">
+  <link rel="icon" href="/favicon.png" type="image/png">
+  <title>Writing — Michal Lajčiak</title>
+  <link rel="stylesheet" href="/style.css">
+  <script>
+    (function () {
+      var t = localStorage.getItem("theme");
+      if (t === "system") t = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+      if (t === "dark" || t === "light") document.documentElement.setAttribute("data-theme", t);
+    })();
+  </script>
 </head>
 <body>
-  <p><a href="/">Home</a></p>
+  <button type="button" id="theme-toggle" class="theme-toggle" aria-label="Theme">
+    <span class="theme-toggle__icon theme-toggle__icon--dark" aria-hidden="true">
+      <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
+    </span>
+    <span class="theme-toggle__icon theme-toggle__icon--light" aria-hidden="true">
+      <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+    </span>
+  </button>
+
+  <div class="site">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <ol>
+        <li><a href="/">Michal Lajčiak</a></li>
+        <li aria-current="page">Writing</li>
+      </ol>
+    </nav>
+
+    <p class="writing-empty">No articles yet.</p>
+  </div>
+
+  <script>
+    (function () {
+      var STORAGE_KEY = "theme";
+      var ORDER = ["dark", "light"];
+      var LABELS = { dark: "Theme: dark", light: "Theme: light" };
+      function resolveTheme(v) {
+        if (v === "dark" || v === "light") return v;
+        return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+      }
+      function getStored() { return resolveTheme(localStorage.getItem(STORAGE_KEY)); }
+      function applyTheme(theme) {
+        var r = resolveTheme(theme);
+        document.documentElement.setAttribute("data-theme", r);
+        var btn = document.getElementById("theme-toggle");
+        if (btn) { btn.setAttribute("data-theme-state", r); btn.setAttribute("aria-label", LABELS[r]); }
+      }
+      applyTheme(getStored());
+      var btn = document.getElementById("theme-toggle");
+      if (btn) {
+        btn.addEventListener("click", function () {
+          var i = ORDER.indexOf(getStored());
+          var next = ORDER[(i + 1) % ORDER.length];
+          localStorage.setItem(STORAGE_KEY, next);
+          applyTheme(next);
+        });
+      }
+    })();
+  </script>
 </body>
 </html>
