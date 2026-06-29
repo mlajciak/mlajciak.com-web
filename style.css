@@ -116,52 +116,58 @@ a:hover {
 }
 
 .theme-toggle {
+  position: relative;
   display: inline-flex;
   align-items: center;
+  justify-content: center;
+  width: 1.9rem;
+  height: 1.9rem;
   padding: 0;
-  border: none;
-  background: none;
-  cursor: pointer;
   margin-left: auto;
   flex-shrink: 0;
-}
-
-.theme-toggle__track {
-  position: relative;
-  width: 2.8rem;
-  height: 1.35rem;
-  background: var(--line);
-  border-radius: 9999px;
-  border: 1px solid var(--muted);
-  transition: background var(--duration) var(--ease);
-}
-
-.theme-toggle__thumb {
-  position: absolute;
-  top: 50%;
-  left: 0.18rem;
-  transform: translateY(-50%);
-  width: 0.95rem;
-  height: 0.95rem;
+  border: 1px solid var(--line);
   border-radius: 50%;
-  background: var(--muted);
+  background: transparent;
+  color: var(--muted);
+  cursor: pointer;
+  line-height: 0;
   transition:
-    transform var(--duration) var(--ease),
-    background var(--duration) var(--ease);
+    color var(--duration) var(--ease),
+    border-color var(--duration) var(--ease);
 }
 
-.theme-toggle[data-theme-state="dark"] .theme-toggle__thumb {
-  transform: translate(1.45rem, -50%);
-  background: var(--text);
+.theme-toggle:hover {
+  color: var(--text);
+  border-color: var(--text);
 }
 
-.theme-toggle[data-theme-state="light"] .theme-toggle__thumb {
-  background: var(--text);
-}
-
-.theme-toggle:focus-visible .theme-toggle__track {
+.theme-toggle:focus-visible {
   outline: 1px solid var(--text);
   outline-offset: 2px;
+}
+
+.theme-toggle__icon {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity calc(var(--duration) * 0.85) var(--ease);
+  pointer-events: none;
+}
+
+.theme-toggle__icon svg {
+  width: 1rem;
+  height: 1rem;
+  display: block;
+}
+
+.theme-toggle[data-theme-state="dark"] .theme-toggle__icon--dark,
+.theme-toggle[data-theme-state="light"] .theme-toggle__icon--light,
+html[data-theme-resolved="dark"] .theme-toggle .theme-toggle__icon--dark,
+html[data-theme-resolved="light"] .theme-toggle .theme-toggle__icon--light {
+  opacity: 1;
 }
 
 /* —— layout —— */
