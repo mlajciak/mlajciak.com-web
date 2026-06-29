@@ -12,10 +12,11 @@
       if (t === "system") {
         t = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
       }
-      if (t === "dark" || t === "light") {
-        document.documentElement.setAttribute("data-theme", t);
-        document.documentElement.setAttribute("data-theme-resolved", t);
+      if (t !== "dark" && t !== "light") {
+        t = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
       }
+      document.documentElement.setAttribute("data-theme", t);
+      document.documentElement.setAttribute("data-theme-resolved", t);
     })();
   </script>
 </head>

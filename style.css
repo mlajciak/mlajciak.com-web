@@ -123,9 +123,8 @@ a:hover {
   width: 1.9rem;
   height: 1.9rem;
   padding: 0;
-  margin-left: auto;
   flex-shrink: 0;
-  border: 1px solid var(--line);
+  border: 1px solid var(--muted);
   border-radius: 50%;
   background: transparent;
   color: var(--muted);
@@ -147,14 +146,9 @@ a:hover {
 }
 
 .theme-toggle__icon {
-  position: absolute;
-  inset: 0;
-  display: flex;
+  display: none;
   align-items: center;
   justify-content: center;
-  opacity: 0;
-  transition: opacity calc(var(--duration) * 0.85) var(--ease);
-  pointer-events: none;
 }
 
 .theme-toggle__icon svg {
@@ -163,11 +157,9 @@ a:hover {
   display: block;
 }
 
-.theme-toggle[data-theme-state="dark"] .theme-toggle__icon--dark,
-.theme-toggle[data-theme-state="light"] .theme-toggle__icon--light,
-html[data-theme-resolved="dark"] .theme-toggle .theme-toggle__icon--dark,
-html[data-theme-resolved="light"] .theme-toggle .theme-toggle__icon--light {
-  opacity: 1;
+html[data-theme="dark"] .theme-toggle__icon--dark,
+html[data-theme="light"] .theme-toggle__icon--light {
+  display: flex;
 }
 
 /* —— layout —— */
@@ -209,16 +201,21 @@ html[data-theme-resolved="light"] .theme-toggle .theme-toggle__icon--light {
     0 2px 6px color-mix(in srgb, var(--text) 8%, transparent);
 }
 
+.identity-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  width: 100%;
+  margin-bottom: 0.35rem;
+}
+
 .identity h1 {
   font-size: 1.75rem;
   font-weight: 700;
   letter-spacing: -0.02em;
-  margin-bottom: 0.35rem;
+  margin-bottom: 0;
   line-height: 1.2;
-  display: flex;
-  align-items: center;
-  gap: 0.45em;
-  flex-wrap: wrap;
 }
 
 
@@ -685,11 +682,6 @@ body.home-page .intro .links a.nav-icon-link:focus-visible {
 }
 
 @media (max-width: 480px) {
-  .theme-toggle {
-    top: 1rem;
-    right: 1rem;
-  }
-
   .site {
     padding-top: 2rem;
   }
