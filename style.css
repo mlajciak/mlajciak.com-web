@@ -121,30 +121,47 @@ a:hover {
   padding: 0;
   border: none;
   background: none;
-  color: var(--muted);
   cursor: pointer;
-  font-family: inherit;
-  font-size: inherit;
-  line-height: inherit;
-  transition: color var(--duration) var(--ease);
+  margin-left: auto;
+  flex-shrink: 0;
 }
 
-.theme-toggle:hover {
-  color: var(--text);
+.theme-toggle__track {
+  position: relative;
+  width: 2.8rem;
+  height: 1.35rem;
+  background: var(--line);
+  border-radius: 9999px;
+  border: 1px solid var(--muted);
+  transition: background var(--duration) var(--ease);
 }
 
-.theme-toggle:focus-visible {
-  outline: 1px solid var(--line);
-  outline-offset: 3px;
+.theme-toggle__thumb {
+  position: absolute;
+  top: 50%;
+  left: 0.18rem;
+  transform: translateY(-50%);
+  width: 0.95rem;
+  height: 0.95rem;
+  border-radius: 50%;
+  background: var(--muted);
+  transition:
+    transform var(--duration) var(--ease),
+    background var(--duration) var(--ease);
 }
 
-.theme-toggle__label {
-  display: none;
+.theme-toggle[data-theme-state="dark"] .theme-toggle__thumb {
+  transform: translate(1.45rem, -50%);
+  background: var(--text);
 }
 
-.theme-toggle[data-theme-state="dark"] .theme-toggle__label--dark,
-.theme-toggle[data-theme-state="light"] .theme-toggle__label--light {
-  display: inline;
+.theme-toggle[data-theme-state="light"] .theme-toggle__thumb {
+  background: var(--text);
+}
+
+.theme-toggle:focus-visible .theme-toggle__track {
+  outline: 1px solid var(--text);
+  outline-offset: 2px;
 }
 
 /* —— layout —— */
@@ -196,27 +213,8 @@ a:hover {
   align-items: center;
   gap: 0.45em;
   flex-wrap: wrap;
-  justify-content: space-between;
 }
 
-.identity-icon-link {
-  display: inline-flex;
-  align-items: center;
-  color: var(--muted);
-  text-decoration: none;
-  line-height: 0;
-  transition: color var(--duration) var(--ease);
-}
-
-.identity-icon-link:hover {
-  color: var(--text);
-}
-
-.identity-icon-link svg {
-  width: 0.7em;
-  height: 0.7em;
-  display: block;
-}
 
 .tagline {
   color: var(--muted);
@@ -230,7 +228,7 @@ a:hover {
   gap: 0.5rem;
   margin-top: 0;
   font-family: "Latin Modern Mono", monospace;
-  font-size: 0.8rem;
+  font-size: 1.05rem;
   overflow: visible;
 }
 
@@ -286,30 +284,26 @@ body.home-page .intro .links a {
 
 body.home-page .intro .links a.home-nav-link {
   background-color: transparent;
-  border-color: transparent;
+  border: 1px solid var(--line);
+  border-radius: 9999px;
   box-shadow: none;
-  padding: 0;
+  padding: 0.1rem 0.75rem;
   color: var(--muted);
   text-decoration: none;
   position: relative;
+  transition:
+    border-color var(--duration) var(--ease),
+    color var(--duration) var(--ease);
 }
 
 body.home-page .intro .links a.home-nav-link::after {
-  content: '';
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: -1px;
-  height: 1px;
-  background: currentColor;
-  opacity: 0;
-  transition: opacity var(--duration) var(--ease);
+  display: none;
 }
 
 body.home-page .intro .links a.home-nav-link:hover,
 body.home-page .intro .links a.home-nav-link:focus-visible {
   background-color: transparent;
-  border-color: transparent;
+  border-color: var(--text);
   box-shadow: none;
   color: var(--text);
   text-decoration: none;
@@ -319,18 +313,57 @@ body.home-page .intro .links a.home-nav-link.is-active,
 body.home-page .intro .links a.home-nav-link.is-active:hover,
 body.home-page .intro .links a.home-nav-link.is-active:focus-visible {
   background-color: transparent;
-  border-color: transparent;
+  border-color: var(--text);
   color: var(--text);
   box-shadow: none;
   text-decoration: none;
 }
 
-body.home-page .intro .links a.home-nav-link.is-active::after {
-  opacity: 1;
-}
 
 body.home-page .intro .links a.home-nav-link .link-icon {
   display: none;
+}
+
+.nav-icon-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.9rem;
+  height: 1.9rem;
+  padding: 0;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  color: var(--muted);
+  text-decoration: none;
+  flex-shrink: 0;
+  background-color: transparent;
+  box-shadow: none;
+  transition: color var(--duration) var(--ease), border-color var(--duration) var(--ease);
+}
+
+body.home-page .intro .links a.nav-icon-link {
+  width: 1.9rem;
+  height: 1.9rem;
+  padding: 0;
+  border-radius: 50%;
+  background-color: transparent;
+  border-color: var(--line);
+  box-shadow: none;
+  color: var(--muted);
+}
+
+body.home-page .intro .links a.nav-icon-link:hover,
+body.home-page .intro .links a.nav-icon-link:focus-visible {
+  background-color: transparent;
+  border-color: var(--text);
+  color: var(--text);
+  box-shadow: none;
+}
+
+.nav-icon-link svg {
+  width: 1.1rem;
+  height: 1.1rem;
+  display: block;
 }
 
 @media (max-width: 640px) {

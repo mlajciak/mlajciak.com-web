@@ -25,10 +25,7 @@
           <li aria-current="page">About</li>
         </ol>
       </nav>
-      <button type="button" id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">
-        <span class="theme-toggle__label theme-toggle__label--dark">dark</span>
-        <span class="theme-toggle__label theme-toggle__label--light">light</span>
-      </button>
+      <button type="button" id="theme-toggle" class="theme-toggle" aria-label="Toggle theme"><span class="theme-toggle__track"><span class="theme-toggle__thumb"></span></span></button>
     </div>
 
     <article class="post-body" id="about-content">
@@ -67,11 +64,26 @@
         return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
       }
       function getStored() { return resolveTheme(localStorage.getItem(STORAGE_KEY)); }
+      function updateFavicon(theme) {
+        var img = new Image();
+        img.onload = function () {
+          var canvas = document.createElement("canvas");
+          canvas.width = img.naturalWidth;
+          canvas.height = img.naturalHeight;
+          var ctx = canvas.getContext("2d");
+          if (theme === "light") ctx.filter = "invert(1)";
+          ctx.drawImage(img, 0, 0);
+          var link = document.querySelector("link[rel='icon']");
+          if (link) link.href = canvas.toDataURL();
+        };
+        img.src = "/favicon.png";
+      }
       function applyTheme(theme) {
         var r = resolveTheme(theme);
         document.documentElement.setAttribute("data-theme", r);
         var btn = document.getElementById("theme-toggle");
         if (btn) { btn.setAttribute("data-theme-state", r); btn.setAttribute("aria-label", LABELS[r]); }
+        updateFavicon(r);
       }
       applyTheme(getStored());
       var btn = document.getElementById("theme-toggle");
