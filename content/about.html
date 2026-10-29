@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script>if(location.pathname.indexOf("/content/")===0)location.replace("/");</script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About</title>
+  <link rel="icon" type="image/png" href="/public/favicon.png">
+  <link rel="stylesheet" href="/style.css">
+  <script>if (localStorage.getItem("theme") === "dark" || (localStorage.getItem("theme") === "system" && matchMedia("(prefers-color-scheme: dark)").matches)) document.documentElement.classList.add("dark");</script>
+  <script src="/js/tex.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js"></script>
+</head>
+<body>
+  <nav id="sidebar"></nav>
+  <main>
+    <div class="intro">
+      <div class="intro-id">
+        <img class="portrait" src="/public/michal.png" alt="Michal Lajčiak">
+        <img class="signature" src="/public/name.png" alt="Michal Lajčiak">
+      </div>
+      <div class="intro-copy">
+        <p><strong>Michal Lajčiak</strong>, Founder of <a href="https://xyzt-lab.com">XYZT</a>, building photonic supercomputers.</p>
+        <p>I work on hard technical problems and transform them into real world solutions. Most of my work is done in the areas of applied AI, applied physics, and robotics. As of now, I focus on developing novel computing systems to attack the memory wall problem. Outside of work, I like reading about history and sci-fi books.</p>
+        <p>Contact me only at <a href="mailto:lajciakmichal@gmail.com" target="_blank" rel="noopener noreferrer">lajciakmichal@gmail.com</a> or X.com/<a href="https://x.com/lajciakmichal" target="_blank" rel="noopener noreferrer">@lajciakmichal</a>.</p>
+      </div>
+    </div>
+  </main>
+  <script src="/js/sidebar.js"></script>
+</body>
+</html>

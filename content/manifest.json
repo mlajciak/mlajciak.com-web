@@ -1,0 +1,30 @@
+[
+  {
+    "title": "About",
+    "href": "/"
+  },
+  {
+    "title": "Energy-based a.Neuron",
+    "href": "/energy-based-a-neuron/"
+  },
+  {
+    "title": "GPU World",
+    "href": "/gpu-world/"
+  },
+  {
+    "title": "Napoleon",
+    "href": "/napoleon/"
+  },
+  {
+    "title": "Singularity Outcomes",
+    "href": "/post/"
+  },
+  {
+    "title": "Theoretical Concept of Ternary Gluon-based Computer",
+    "href": "/tertiary-gluon-computer/"
+  },
+  {
+    "title": "What Will Be The Finite Architecture of Superintelligence?",
+    "href": "/what-will-be-the-finite-architecture-of-superintelligence/"
+  }
+]

@@ -4,139 +4,48 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Michal Lajčiak</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-  <link rel="icon" type="image/png" href="favicon.png">
-  <link rel="stylesheet" href="style.css">
-  <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.33/dist/lenis.min.js"></script>
+  <link rel="icon" type="image/png" href="/public/favicon.png">
+  <link rel="stylesheet" href="/style.css">
+  <script>if (localStorage.getItem("theme") === "dark" || (localStorage.getItem("theme") === "system" && matchMedia("(prefers-color-scheme: dark)").matches)) document.documentElement.classList.add("dark");</script>
+  <script src="/js/tex.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js"></script>
 </head>
 <body>
-  <script>
-    if (localStorage.getItem('theme') === 'dark') document.body.classList.add('dark');
-  </script>
-  <main>
-    <div class="hero">
-      <div class="hero-avatar">
-        <img src="michal.png" alt="Michal Lajčiak">
-      </div>
-      <div class="hero-content">
-        <div class="hero-title">
-          <span>Michal Lajčiak</span>
-          <div class="badges">
-            <button id="theme-toggle" aria-label="Toggle dark mode">
-              <svg id="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="12" cy="12" r="4.5"/><line x1="12" y1="2" x2="12" y2="5"/><line x1="12" y1="19" x2="12" y2="22"/><line x1="2" y1="12" x2="5" y2="12"/><line x1="19" y1="12" x2="22" y2="12"/><line x1="5.64" y1="5.64" x2="7.76" y2="7.76"/><line x1="16.24" y1="16.24" x2="18.36" y2="18.36"/><line x1="5.64" y1="18.36" x2="7.76" y2="16.24"/><line x1="16.24" y1="7.76" x2="18.36" y2="5.64"/></svg>
-              <svg id="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="display:none"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
-            </button>
-            <a class="badge" href="https://x.com/lajciakmichal" target="_blank" rel="noopener noreferrer" aria-label="X profile">
-              <img src="x.png" alt="X">
-            </a>
-            <a class="badge badge-square" href="https://huggingface.co/mlajciak" target="_blank" rel="noopener noreferrer" aria-label="Hugging Face profile">
-              <img src="hf.png" alt="Hugging Face">
-            </a>
-          </div>
-        </div>
-        <p>I work on efficient AI inference accelerator modules (XYZT). Previously, I independently researched novel machine learning techniques, worked on robotics and robotic swarms (ISEF 2024 1st place in Robotics). I am passionate about physics, sci-fi and fantasy.</p>
-      </div>
+  <nav id="site-nav">
+    <p class="name"><a href="/"><img src="/public/name.png" alt="Michal Lajčiak"></a></p>
+    <div class="activity">
+      <button type="button" id="nav-toc" aria-label="Contents" aria-pressed="true"><i class="fa-solid fa-list-ol" aria-hidden="true"></i></button>
+      <button type="button" id="nav-articles" aria-label="Other articles" aria-pressed="false"><i class="fa-solid fa-book-open" aria-hidden="true"></i></button>
+      <button type="button" id="nav-search" aria-label="Search" aria-pressed="false"><i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i><i class="fa-solid fa-xmark" aria-hidden="true"></i></button>
+      <p class="theme"><a href="#theme" id="theme-toggle" aria-label="Light mode"></a></p>
     </div>
-
-    <div class="section-row">
-      <a class="pinned-card" href="https://github.com/mlajciak/XYZT-sim" target="_blank" rel="noopener noreferrer">
-        <div class="pinned-img"></div>
-        <span class="card-pinned-badge">Pinned</span>
-        <div class="pinned-card-title">
-          <h2>XYZT-sim</h2>
-          <p>Multiphysics Python Solver</p>
-        </div>
-      </a>
-      <div class="recent">
-        <div class="recent-header">
-          <h2>Recent</h2>
-          <div class="search-wrap">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-            <input type="text" id="search" placeholder="Search" autocomplete="off">
-          </div>
-        </div>
-        <ul class="recent-list" id="recent-list"></ul>
+    <div class="side">
+      <p class="side-title" id="title-toc">Table of Contents</p>
+      <p class="side-title" id="title-articles">Switch Content</p>
+      <form class="nav-search" role="search">
+        <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+        <input id="nav-query" type="search" placeholder="Search" aria-label="Search sidebar" autocomplete="off">
+        <button type="button" id="nav-search-close" aria-label="Close search"><i class="fa-solid fa-xmark" aria-hidden="true"></i></button>
+      </form>
+      <h2 class="home-title" id="title-research">Research</h2>
+      <div class="home-group" id="list-research">
+        <p><a href="https://www.mdpi.com/1424-8220/25/13/3886" target="_blank" rel="noopener noreferrer">Swarm Control with RRT-APF Planning and FNN Task Allocation Tested on Mobile Differential Platform</a></p>
       </div>
+      <h2 class="home-title" id="title-unpublished">Unpublished research</h2>
+      <div class="home-group" id="list-unpublished"></div>
+      <h2 class="home-title" id="title-blog">Blog, articles, notes &amp; misc</h2>
+      <div class="home-group" id="list-blog">
+        <p><a href="https://xyzt-lab.com" target="_blank" rel="noopener noreferrer">XYZT</a></p>
+      </div>
+      <div id="page-list"></div>
+      <div id="toc"></div>
     </div>
+  </nav>
+  <main id="content" class="is-loading" aria-busy="true">
+    <div class="spinner" role="status" aria-label="Loading"></div>
+    <div id="page"></div>
+    <noscript><p>JavaScript is required to read these pages.</p></noscript>
   </main>
-  <script>
-    const toggle = document.getElementById('theme-toggle');
-    const iconSun = document.getElementById('icon-sun');
-    const iconMoon = document.getElementById('icon-moon');
-
-    function applyTheme(dark) {
-      document.body.classList.toggle('dark', dark);
-      iconSun.style.display = dark ? 'none' : 'block';
-      iconMoon.style.display = dark ? 'block' : 'none';
-    }
-
-    applyTheme(localStorage.getItem('theme') === 'dark');
-
-    toggle.addEventListener('click', () => {
-      const isDark = !document.body.classList.contains('dark');
-      localStorage.setItem('theme', isDark ? 'dark' : 'light');
-      applyTheme(isDark);
-    });
-
-    const getSortDate = (item) => item.date || item.year + '-01-01';
-    const formatDate = (dateStr) => {
-      const date = new Date(dateStr);
-      const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-      return months[date.getMonth()] + ' ' + date.getDate() + ', ' + date.getFullYear();
-    };
-
-    let allItems = [];
-
-    const renderItems = (items) => {
-      const list = document.getElementById('recent-list');
-      list.innerHTML = items.map(item => {
-        const date = formatDate(item.sortDate);
-        if (item.kind === 'paper') {
-          return `<li><a href="${item.url}" target="_blank" rel="noopener noreferrer">
-            <span class="title">${item.title}</span>
-            <span class="meta-row"><span class="meta">${item.authors || ''}</span><span class="meta">${date}</span></span>
-          </a></li>`;
-        } else {
-          const href = item.url ? item.url : (item.file && item.file.endsWith('.html') ? `blog/${item.file}` : `post.html?slug=${item.slug}`);
-          const attrs = item.url ? ' target="_blank" rel="noopener noreferrer"' : '';
-          return `<li><a href="${href}"${attrs}>
-            <span class="title">${item.title}</span>
-            <span class="meta-row"><span class="meta">${date}</span></span>
-          </a></li>`;
-        }
-      }).join('');
-    };
-
-    Promise.all([
-      fetch('recent.json').then(r => r.json()).then(items => items.map(i => ({...i, kind: 'paper'}))),
-      fetch('blog/posts.json').then(r => r.json()).then(items => items.map(i => ({...i, kind: 'blog'})))
-    ]).then(([papers, blogs]) => {
-      allItems = [...papers, ...blogs]
-        .map(item => ({...item, sortDate: getSortDate(item)}))
-        .sort((a, b) => new Date(b.sortDate) - new Date(a.sortDate));
-      renderItems(allItems);
-    });
-
-    document.getElementById('search').addEventListener('input', (e) => {
-      const term = e.target.value.toLowerCase();
-      renderItems(allItems.filter(item =>
-        item.title.toLowerCase().includes(term) ||
-        (item.authors || '').toLowerCase().includes(term) ||
-        (item.venue || '').toLowerCase().includes(term)
-      ));
-    });
-
-    const lenis = new Lenis({
-      duration: 1.2,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      orientation: 'vertical',
-      smoothWheel: true,
-    });
-
-    function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
-    requestAnimationFrame(raf);
-  </script>
+  <script src="/js/sidebar.js"></script>
 </body>
 </html>

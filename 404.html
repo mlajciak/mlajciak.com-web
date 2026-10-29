@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Michal Lajčiak</title>
+  <link rel="icon" type="image/png" href="/public/favicon.png">
+  <link rel="stylesheet" href="/style.css">
+  <script>if (localStorage.getItem("theme") === "dark" || (localStorage.getItem("theme") === "system" && matchMedia("(prefers-color-scheme: dark)").matches)) document.documentElement.classList.add("dark");</script>
+  <script src="/js/tex.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js"></script>
+</head>
+<body>
+  <nav id="site-nav">
+    <p class="name"><a href="/"><img src="/public/name.png" alt="Michal Lajčiak"></a></p>
+    <div class="activity">
+      <button type="button" id="nav-toc" aria-label="Contents" aria-pressed="true"><i class="fa-solid fa-list-ol" aria-hidden="true"></i></button>
+      <button type="button" id="nav-articles" aria-label="Other articles" aria-pressed="false"><i class="fa-solid fa-book-open" aria-hidden="true"></i></button>
+      <button type="button" id="nav-search" aria-label="Search" aria-pressed="false"><i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i><i class="fa-solid fa-xmark" aria-hidden="true"></i></button>
+      <p class="theme"><a href="#theme" id="theme-toggle" aria-label="Light mode"></a></p>
+    </div>
+    <div class="side">
+      <p class="side-title" id="title-toc">Table of Contents</p>
+      <p class="side-title" id="title-articles">Switch Content</p>
+      <form class="nav-search" role="search">
+        <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+        <input id="nav-query" type="search" placeholder="Search" aria-label="Search sidebar" autocomplete="off">
+        <button type="button" id="nav-search-close" aria-label="Close search"><i class="fa-solid fa-xmark" aria-hidden="true"></i></button>
+      </form>
+      <h2 class="home-title" id="title-research">Research</h2>
+      <div class="home-group" id="list-research">
+        <p><a href="https://www.mdpi.com/1424-8220/25/13/3886" target="_blank" rel="noopener noreferrer">Swarm Control with RRT-APF Planning and FNN Task Allocation Tested on Mobile Differential Platform</a></p>
+      </div>
+      <h2 class="home-title" id="title-unpublished">Unpublished research</h2>
+      <div class="home-group" id="list-unpublished"></div>
+      <h2 class="home-title" id="title-blog">Blog, articles, notes &amp; misc</h2>
+      <div class="home-group" id="list-blog">
+        <p><a href="https://xyzt-lab.com" target="_blank" rel="noopener noreferrer">XYZT</a></p>
+      </div>
+      <div id="page-list"></div>
+      <div id="toc"></div>
+    </div>
+  </nav>
+  <main id="content" class="is-loading" aria-busy="true">
+    <div class="spinner" role="status" aria-label="Loading"></div>
+    <div id="page"></div>
+    <noscript><p>JavaScript is required to read these pages.</p></noscript>
+  </main>
+  <script src="/js/sidebar.js"></script>
+</body>
+</html>
