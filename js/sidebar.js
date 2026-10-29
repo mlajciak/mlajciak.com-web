@@ -93,7 +93,7 @@ async function pagesFromManifest() {
   return data
     .map((page) => ({
       title: page.title,
-      href: publicHref((page.href || "").split("/").pop()),
+      href: publicHref((page.href || "").replace(/\/+$/, "").split("/").pop()),
     }))
     .sort(byTitle);
 }
