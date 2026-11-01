@@ -365,6 +365,10 @@ let currentSlug = null;
 let requestId = 0;
 
 async function openPage(slug, historyMode) {
+  if (slug === "gpu-world") {
+    slug = "ghost-in-a-machine";
+    if (historyMode === "none" || historyMode === "pop") historyMode = "replace";
+  }
   document.body.classList.toggle("is-about", slug === "about");
   if (slug === "about" && nav.classList.contains("is-searching")) {
     nav.classList.remove("is-searching");
@@ -428,7 +432,32 @@ async function openPage(slug, historyMode) {
   }
   const queryInput = document.getElementById("nav-query");
   applySidebarFilter(queryInput ? queryInput.value : "");
+  placePdfButton();
 }
+
+const articleMobile = window.matchMedia("(max-width: 1400px)");
+
+function placePdfButton() {
+  const page = document.getElementById("page");
+  const activity = nav.querySelector(".activity");
+  const theme = nav.querySelector(".theme");
+  if (!activity) return;
+  if (currentSlug !== "ghost-in-a-machine") {
+    activity.querySelectorAll(".story-pdf").forEach((button) => button.remove());
+    return;
+  }
+  const button = document.querySelector(".story-pdf");
+  if (!button || !page || !theme) return;
+  if (articleMobile.matches && !document.body.classList.contains("is-about")) {
+    theme.insertAdjacentElement("afterend", button);
+  } else {
+    const cover = page.querySelector(".story-cover");
+    if (cover) page.insertBefore(button, cover);
+    else page.prepend(button);
+  }
+}
+
+articleMobile.addEventListener("change", placePdfButton);
 
 function onClick(event) {
   if (event.defaultPrevented) return;
@@ -474,12 +503,33 @@ if (toggle) {
 }
 
 const nav = document.getElementById("site-nav");
+const collapseButton = document.getElementById("nav-collapse");
 const searchButton = document.getElementById("nav-search");
 const searchInput = document.getElementById("nav-query");
 const tocButton = document.getElementById("nav-toc");
 const articlesButton = document.getElementById("nav-articles");
 
+function sidebarCollapsed() {
+  return document.documentElement.classList.contains("nav-collapsed");
+}
+
+function applySidebarCollapsed(collapsed) {
+  document.documentElement.classList.toggle("nav-collapsed", collapsed);
+  localStorage.setItem("sidebar", collapsed ? "collapsed" : "open");
+  if (collapsed) {
+    if (nav.classList.contains("is-searching")) closeSidebarSearch();
+    nav.classList.remove("is-articles");
+    if (tocButton) tocButton.setAttribute("aria-pressed", "false");
+    if (articlesButton) articlesButton.setAttribute("aria-pressed", "false");
+  }
+  const button = document.getElementById("nav-collapse");
+  if (!button) return;
+  button.setAttribute("aria-pressed", collapsed ? "true" : "false");
+  button.setAttribute("aria-label", collapsed ? "Show sidebar" : "Hide sidebar");
+}
+
 function showArticleList(articles) {
+  if (sidebarCollapsed()) applySidebarCollapsed(false);
   if (nav.classList.contains("is-searching")) closeSidebarSearch();
   nav.classList.toggle("is-articles", articles);
   if (tocButton) tocButton.setAttribute("aria-pressed", articles ? "false" : "true");
@@ -488,6 +538,12 @@ function showArticleList(articles) {
 
 if (tocButton) tocButton.addEventListener("click", () => showArticleList(false));
 if (articlesButton) articlesButton.addEventListener("click", () => showArticleList(true));
+if (collapseButton) {
+  collapseButton.addEventListener("click", () => {
+    applySidebarCollapsed(!sidebarCollapsed());
+  });
+  if (sidebarCollapsed()) applySidebarCollapsed(true);
+}
 
 function sidebarLinks() {
   const about = document.body.classList.contains("is-about");
@@ -597,6 +653,7 @@ if (searchButton && searchInput) {
       closeSidebarSearch();
       return;
     }
+    if (sidebarCollapsed()) applySidebarCollapsed(false);
     nav.classList.add("is-searching");
     markSearchButton(true);
     searchInput.focus();

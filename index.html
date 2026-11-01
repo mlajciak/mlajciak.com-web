@@ -6,7 +6,7 @@
   <title>Michal Lajčiak</title>
   <link rel="icon" type="image/png" href="/public/favicon.png">
   <link rel="stylesheet" href="/style.css">
-  <script>if (localStorage.getItem("theme") === "dark" || (localStorage.getItem("theme") === "system" && matchMedia("(prefers-color-scheme: dark)").matches)) document.documentElement.classList.add("dark");</script>
+  <script>if (localStorage.getItem("theme") === "dark" || (localStorage.getItem("theme") === "system" && matchMedia("(prefers-color-scheme: dark)").matches)) document.documentElement.classList.add("dark");if (localStorage.getItem("sidebar") === "collapsed") document.documentElement.classList.add("nav-collapsed");</script>
   <script src="/js/tex.js"></script>
   <script defer src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js"></script>
 </head>
@@ -14,6 +14,7 @@
   <nav id="site-nav">
     <p class="name"><a href="/"><img src="/public/name.png" alt="Michal Lajčiak"></a></p>
     <div class="activity">
+      <button type="button" id="nav-collapse" aria-label="Hide sidebar" aria-pressed="false"><svg viewBox="0 0 512 512" aria-hidden="true"><path fill="currentColor" fill-rule="evenodd" d="M0 96C0 60.7 28.7 32 64 32H448c35.3 0 64 28.7 64 64V416c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V96zM192 96H448V416H192z"/></svg></button>
       <button type="button" id="nav-toc" aria-label="Contents" aria-pressed="true"><i class="fa-solid fa-list-ol" aria-hidden="true"></i></button>
       <button type="button" id="nav-articles" aria-label="Other articles" aria-pressed="false"><i class="fa-solid fa-book-open" aria-hidden="true"></i></button>
       <button type="button" id="nav-search" aria-label="Search" aria-pressed="false"><i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i><i class="fa-solid fa-xmark" aria-hidden="true"></i></button>
