@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Michal Lajčiak</title>
   <link rel="icon" type="image/png" href="/public/favicon.png">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@700;900&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nova+Mono&family=Roboto+Condensed:wght@400&family=Syncopate:wght@400&display=swap">
   <style>
     html {
       background: #00ff41;
@@ -24,7 +24,7 @@
       background: #00ff41;
       color: #000;
       font-family: "Roboto Condensed";
-      font-weight: 900;
+      font-weight: 400;
       font-size: 1rem;
       line-height: 1.4;
       text-align: justify;
@@ -55,26 +55,30 @@
       unicode-range: U+F0000-F1FFF;
     }
 
-    html.machine h1,
+    html.machine h1 {
+      font-family: "Accelerando-8192", "Syncopate", "Roboto Condensed";
+      letter-spacing: 0;
+    }
+
     html.machine .copy,
     html.machine .copy * {
-      font-family: "Accelerando-8192", "Roboto Condensed";
+      font-family: "Accelerando-8192", "Nova Mono", "Roboto Condensed";
       letter-spacing: 0;
     }
 
     h1 {
       position: relative;
       margin: 0 -1.5rem 0;
-      padding: 0.45rem 1.5rem 0.5rem;
+      padding: 0.7rem 1.5rem 0.28rem;
       border: 2px solid #000;
       border-bottom: 0;
       background: #000;
       color: #fff;
+      font-family: "Syncopate", "Roboto Condensed";
       font-size: 2.75rem;
-      font-weight: 700;
-      line-height: 1.05;
+      font-weight: 400;
+      line-height: 1;
       letter-spacing: -0.02em;
-      text-transform: uppercase;
     }
 
     .mode-toggle {
@@ -139,9 +143,9 @@
 
     p {
       margin: 0 0 1rem;
+      font-family: "Nova Mono", "Roboto Condensed";
       font-size: 1rem;
-      font-weight: 900;
-      text-transform: uppercase;
+      font-weight: 400;
     }
 
     p:last-child {
@@ -151,12 +155,20 @@
     a,
     a:visited {
       color: #000;
+      text-decoration: none;
+    }
+
+    a:hover,
+    a:visited:hover,
+    a:focus-visible {
+      background: #00ff41;
+      color: #000;
     }
 
   </style>
 </head>
 <body>
-  <h1>Michal Lajčiak
+  <h1>michal lajčiak
     <button class="mode-toggle" type="button" aria-pressed="false" aria-label="Switch to Accelerando">
       <svg class="mode-icon mode-icon-latin" viewBox="0 0 16 16" aria-hidden="true"><path d="M3.15 13.15 8 2.35l4.85 10.8M5.05 9.2h5.9" fill="none" stroke="currentColor" stroke-width="1.2"/></svg>
       <svg class="mode-icon mode-icon-acc" viewBox="0 0 16 16" aria-hidden="true"><path d="M2.6 2.6h7.2v7.2H2.6zM6.2 6.2h7.2v7.2H6.2z" fill="none" stroke="currentColor" stroke-width="1.2"/></svg>
