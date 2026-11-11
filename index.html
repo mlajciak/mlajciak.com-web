@@ -5,12 +5,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Michal Lajčiak</title>
   <link rel="icon" type="image/png" href="/public/favicon.png">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nova+Mono&family=Roboto+Condensed:wght@400&family=Syncopate:wght@400&display=swap">
+  <link rel="preload" href="/public/fonts/osp-din.woff2" as="font" type="font/woff2" crossorigin>
   <style>
+    @font-face {
+      font-family: "OSP-DIN";
+      font-style: normal;
+      font-weight: 500;
+      font-display: block;
+      src: url("/public/fonts/osp-din.woff2") format("woff2");
+    }
+
     html {
-      background: #00ff41;
+      background: #000;
       color: #000;
-      font-family: "Roboto Condensed";
+      font-family: "OSP-DIN", sans-serif;
       overflow-x: clip;
     }
 
@@ -18,13 +26,13 @@
       position: relative;
       box-sizing: border-box;
       margin: 0 auto;
-      padding: 2.4rem 1.5rem 4rem;
+      padding: 0 1.5rem 4rem;
       min-height: 100vh;
       max-width: 38rem;
-      background: #00ff41;
+      background: #000;
       color: #000;
-      font-family: "Roboto Condensed";
-      font-weight: 400;
+      font-family: "OSP-DIN", sans-serif;
+      font-weight: 500;
       font-size: 1rem;
       line-height: 1.4;
       text-align: justify;
@@ -34,51 +42,38 @@
       overflow-wrap: break-word;
     }
 
-    body::before,
-    body::after {
-      content: "";
-      position: absolute;
-      top: 0;
-      bottom: 0;
-      width: 2px;
-      background: #000;
-      pointer-events: none;
-    }
-
-    body::before { left: 0; }
-    body::after { right: 0; }
-
     @font-face {
       font-family: "Accelerando-8192";
       src: url("/public/fonts/accelerando-8192.ttf") format("truetype");
-      font-display: swap;
+      font-display: block;
       unicode-range: U+F0000-F1FFF;
     }
 
     html.machine h1 {
-      font-family: "Accelerando-8192", "Syncopate", "Roboto Condensed";
+      font-family: "Accelerando-8192", "OSP-DIN", sans-serif;
       letter-spacing: 0;
     }
 
     html.machine .copy,
     html.machine .copy * {
-      font-family: "Accelerando-8192", "Nova Mono", "Roboto Condensed";
+      font-family: "Accelerando-8192", "OSP-DIN", sans-serif;
       letter-spacing: 0;
     }
 
     h1 {
       position: relative;
+      z-index: 1;
       margin: 0 -1.5rem 0;
       padding: 0.7rem 1.5rem 0.28rem;
-      border: 2px solid #000;
+      border: 1px solid #ff0000;
       border-bottom: 0;
-      background: #000;
-      color: #fff;
-      font-family: "Syncopate", "Roboto Condensed";
-      font-size: 2.75rem;
-      font-weight: 400;
-      line-height: 1;
-      letter-spacing: -0.02em;
+      background: #ff0000;
+      color: #000;
+      font-family: "OSP-DIN", sans-serif;
+      font-size: 2.15rem;
+      font-weight: 500;
+      line-height: 1.05;
+      letter-spacing: 0;
     }
 
     .mode-toggle {
@@ -91,15 +86,57 @@
       padding: 0;
       border: 0;
       background: none;
-      color: #fff;
+      color: #000;
       line-height: 0;
       cursor: pointer;
+      z-index: 1;
     }
 
-    .mode-toggle:hover { opacity: 0.7; }
+    .mode-toggle:hover .mode-icon { opacity: 0.7; }
+
+    .mode-toggle::before,
+    .mode-toggle::after {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .mode-toggle::before {
+      content: "";
+      position: absolute;
+      top: calc(100% + 3px);
+      left: 50%;
+      transform: translateX(-50%);
+      border-style: solid;
+      border-width: 0 5px 6px 5px;
+      border-color: transparent transparent #000 transparent;
+    }
+
+    .mode-toggle::after {
+      content: attr(aria-label);
+      position: absolute;
+      top: calc(100% + 9px);
+      right: -0.2rem;
+      padding: 0.14rem 0.42rem;
+      background: #000;
+      color: #fff;
+      font-family: "OSP-DIN", sans-serif;
+      font-size: 0.68rem;
+      font-weight: 500;
+      line-height: 1.3;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .mode-toggle:hover::before,
+    .mode-toggle:focus-visible::before,
+    .mode-toggle:hover::after,
+    .mode-toggle:focus-visible::after {
+      opacity: 1;
+    }
 
     .mode-toggle:focus-visible {
-      outline: 2px solid #fff;
+      outline: 2px solid #000;
       outline-offset: 3px;
     }
 
@@ -119,33 +156,16 @@
       position: relative;
       margin: 0 -1.5rem;
       padding: 0.7rem 1.5rem;
-      border: 2px solid #000;
-      background: #fff;
-    }
-
-    h1::before,
-    .copy::before,
-    .copy::after {
-      content: "";
-      position: absolute;
-      left: 50%;
-      width: 100vw;
-      height: 2px;
-      margin-left: -50vw;
+      border: 1px solid #ff0000;
       background: #000;
-      pointer-events: none;
+      color: #ff0000;
     }
-
-    h1::before,
-    .copy::before { top: -2px; }
-
-    .copy::after { bottom: -2px; }
 
     p {
       margin: 0 0 1rem;
-      font-family: "Nova Mono", "Roboto Condensed";
+      font-family: "OSP-DIN", sans-serif;
       font-size: 1rem;
-      font-weight: 400;
+      font-weight: 500;
     }
 
     p:last-child {
@@ -154,21 +174,21 @@
 
     a,
     a:visited {
-      color: #000;
+      color: #ff0000;
       text-decoration: none;
     }
 
     a:hover,
     a:visited:hover,
     a:focus-visible {
-      background: #00ff41;
+      background: #ff0000;
       color: #000;
     }
 
   </style>
 </head>
 <body>
-  <h1>michal lajčiak
+  <h1>Michal Lajčiak
     <button class="mode-toggle" type="button" aria-pressed="false" aria-label="Switch to Accelerando">
       <svg class="mode-icon mode-icon-latin" viewBox="0 0 16 16" aria-hidden="true"><path d="M3.15 13.15 8 2.35l4.85 10.8M5.05 9.2h5.9" fill="none" stroke="currentColor" stroke-width="1.2"/></svg>
       <svg class="mode-icon mode-icon-acc" viewBox="0 0 16 16" aria-hidden="true"><path d="M2.6 2.6h7.2v7.2H2.6zM6.2 6.2h7.2v7.2H6.2z" fill="none" stroke="currentColor" stroke-width="1.2"/></svg>
