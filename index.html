@@ -19,14 +19,17 @@
       background: #000;
       color: #000;
       font-family: "OSP-DIN", sans-serif;
+      font-size: 112.5%;
       overflow-x: clip;
     }
 
     body {
       position: relative;
+      display: flex;
+      flex-direction: column;
       box-sizing: border-box;
       margin: 0 auto;
-      padding: 0 1.5rem 4rem;
+      padding: 0 1.5rem;
       min-height: 100vh;
       max-width: 38rem;
       background: #000;
@@ -42,6 +45,20 @@
       overflow-wrap: break-word;
     }
 
+    body::before,
+    body::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 1px;
+      background: #ff0000;
+      pointer-events: none;
+    }
+
+    body::before { left: 0; }
+    body::after { right: 0; }
+
     @font-face {
       font-family: "Accelerando-8192";
       src: url("/public/fonts/accelerando-8192.ttf") format("truetype");
@@ -49,13 +66,8 @@
       unicode-range: U+F0000-F1FFF;
     }
 
-    html.machine h1 {
-      font-family: "Accelerando-8192", "OSP-DIN", sans-serif;
-      letter-spacing: 0;
-    }
-
-    html.machine .copy,
-    html.machine .copy * {
+    html.machine body,
+    html.machine body *:not(.mode-toggle):not(.mode-toggle *) {
       font-family: "Accelerando-8192", "OSP-DIN", sans-serif;
       letter-spacing: 0;
     }
@@ -118,7 +130,7 @@
       right: -0.2rem;
       padding: 0.14rem 0.42rem;
       background: #000;
-      color: #fff;
+      color: #ff0000;
       font-family: "OSP-DIN", sans-serif;
       font-size: 0.68rem;
       font-weight: 500;
@@ -161,6 +173,25 @@
       color: #ff0000;
     }
 
+    .work {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 -1.5rem;
+      padding: 0.7rem 1.5rem;
+      border-right: 1px solid #ff0000;
+      border-left: 1px solid #ff0000;
+      background: #000;
+      color: #ff0000;
+      text-align: center;
+      text-align-last: center;
+    }
+
+    .work p {
+      margin: 0;
+    }
+
     p {
       margin: 0 0 1rem;
       font-family: "OSP-DIN", sans-serif;
@@ -199,6 +230,9 @@
     <p>I am 20 and I was born in Slovakia. My interests are compute, applied physics, robots and hardware, superintelligence, and futurism.</p>
     <p>Connect with me on <a href="https://x.com/lajciakmichal">X</a>.</p>
   </div>
+  <section class="work" aria-label="Work and blog">
+    <p>NOTHING TO SEE HERE YET</p>
+  </section>
   <script src="/js/machine.js"></script>
 </body>
 </html>
