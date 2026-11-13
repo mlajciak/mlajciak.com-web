@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ghost in a Machine (Short Story)</title>
+  <link rel="icon" type="image/png" href="/public/favicon.png">
+  <link rel="preload" href="/public/fonts/osp-din.woff2" as="font" type="font/woff2" crossorigin>
+  <style>
+    @font-face {
+      font-family: "OSP-DIN";
+      font-style: normal;
+      font-weight: 500;
+      font-display: block;
+      src: url("/public/fonts/osp-din.woff2") format("woff2");
+    }
+    @font-face {
+      font-family: "Accelerando-8192";
+      font-weight: 400;
+      src: url("/public/fonts/accelerando-8192.ttf?v=2") format("truetype");
+      font-display: block;
+      unicode-range: U+F0000-F1FFF;
+    }
+    html {
+      background: #000;
+      color: #ff0000;
+      font-family: "OSP-DIN", sans-serif;
+      font-size: 112.5%;
+      overflow-x: clip;
+    }
+    body {
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+      min-height: 100vh;
+      max-width: 38rem;
+      background: #000;
+      color: #ff0000;
+      font-weight: 500;
+      line-height: 1.4;
+      overflow-wrap: anywhere;
+    }
+    html.machine body,
+    html.machine body *:not(.mode-toggle):not(.mode-toggle *):not(.theme-toggle):not(.theme-toggle *) {
+      font-family: "Accelerando-8192", "OSP-DIN", sans-serif;
+      font-weight: 400;
+      font-synthesis: none;
+      letter-spacing: 0;
+    }
+    .top, .story {
+      margin: 0 -1.5rem;
+      border: 1px solid #ff0000;
+    }
+    .top {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 0.55rem 3.8rem 0.55rem 1.5rem;
+      border-bottom: 0;
+      background: #ff0000;
+      color: #000;
+      font-size: 1rem;
+      font-weight: 500;
+      line-height: 1.4;
+    }
+    .top a, .top a:visited { color: #000; text-decoration: none; min-width: 0; }
+    .top a:hover, .top a:focus-visible { background: #000; color: #ff0000; }
+    .top a:hover, .top a:focus-visible { background: #000; color: #ff0000; }
+    .pdf { margin-left: auto; }
+    .theme-toggle,
+    .mode-toggle {
+      position: absolute;
+      top: 50%;
+      width: 16px;
+      height: 16px;
+      margin: 0;
+      padding: 0;
+      border: 0;
+      appearance: none;
+      background: transparent;
+      color: #000;
+      line-height: 0;
+      cursor: pointer;
+      transform: translateY(-50%);
+    }
+    .theme-toggle { right: 2.15rem; }
+    .mode-toggle { right: 0.7rem; }
+    .theme-toggle:hover .theme-icon,
+    .mode-toggle:hover .mode-icon { opacity: 0.7; }
+    .theme-toggle::before,
+    .theme-toggle::after,
+    .mode-toggle::before,
+    .mode-toggle::after { opacity: 0; pointer-events: none; }
+    .theme-toggle::before,
+    .mode-toggle::before {
+      content: "";
+      position: absolute;
+      top: calc(100% + 3px);
+      left: 50%;
+      transform: translateX(-50%);
+      border-style: solid;
+      border-width: 0 5px 6px 5px;
+      border-color: transparent transparent #000 transparent;
+    }
+    .theme-toggle::after,
+    .mode-toggle::after {
+      content: attr(aria-label);
+      position: absolute;
+      top: calc(100% + 9px);
+      padding: 0.14rem 0.42rem;
+      background: #000;
+      color: #ff0000;
+      font-family: "OSP-DIN", sans-serif;
+      font-size: 0.68rem;
+      font-weight: 500;
+      line-height: 1.3;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+    .theme-toggle::after { left: 50%; transform: translateX(-50%); }
+    .mode-toggle::after { right: -0.2rem; }
+    .theme-toggle:hover::before,
+    .theme-toggle:focus-visible::before,
+    .theme-toggle:hover::after,
+    .theme-toggle:focus-visible::after,
+    .mode-toggle:hover::before,
+    .mode-toggle:focus-visible::before,
+    .mode-toggle:hover::after,
+    .mode-toggle:focus-visible::after { opacity: 1; }
+    .theme-toggle:focus-visible,
+    .mode-toggle:focus-visible { outline: 2px solid #000; outline-offset: 3px; }
+    .theme-toggle .theme-icon,
+    .mode-toggle .mode-icon { display: block; width: 16px; height: 16px; }
+    .theme-toggle .theme-icon-white,
+    .mode-toggle .mode-icon-acc { display: none; }
+    .theme-toggle[aria-pressed="true"] .theme-icon-red { display: none; }
+    .theme-toggle[aria-pressed="true"] .theme-icon-white { display: block; }
+    html.machine .mode-toggle .mode-icon-latin { display: none; }
+    html.machine .mode-toggle .mode-icon-acc { display: block; }
+    .story {
+      flex: 1;
+      padding: 0.7rem 1.5rem 4rem;
+      background: #000;
+      min-width: 0;
+      overflow-wrap: anywhere;
+    }
+    h2 { margin: 1.6rem 0 0.6rem; font-size: 1rem; font-weight: 500; }
+    p { margin: 0 0 1rem; }
+    img { display: block; width: 100%; height: auto; margin: 0 0 1rem; }
+    .story:not(.white) img { filter: url(#dark-perlin); }
+    .story a, .story a:visited { color: #ff0000; text-decoration: none; }
+    .story a:hover, .story a:focus-visible { background: #ff0000; color: #000; }
+    .story.white,
+    .story.white a,
+    .story.white a:visited { color: #fff; }
+  </style>
+</head>
+<body>
+  <svg width="0" height="0" aria-hidden="true" style="position:absolute">
+    <filter id="dark-perlin" x="0" y="0" width="100%" height="100%" color-interpolation-filters="sRGB">
+      <feTurbulence type="fractalNoise" baseFrequency="1" numOctaves="1" seed="4" stitchTiles="stitch" result="noise"/>
+      <feComponentTransfer in="noise" result="dark">
+        <feFuncR type="linear" slope="0.55" intercept="0.1"/>
+        <feFuncG type="linear" slope="0.55" intercept="0.1"/>
+        <feFuncB type="linear" slope="0.55" intercept="0.1"/>
+      </feComponentTransfer>
+      <feBlend in="SourceGraphic" in2="dark" mode="multiply"/>
+    </filter>
+  </svg>
+  <header class="top">
+    <a href="/">Michal Lajčiak</a>
+    <a class="pdf" href="/public/ghost-in-a-machine.pdf" download="Ghost in a Machine.pdf">Download as PDF</a>
+    <button class="theme-toggle" type="button" aria-pressed="false" aria-label="White text">
+      <svg class="theme-icon theme-icon-red" viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="5.15" fill="none" stroke="currentColor" stroke-width="1.2"/><path d="M8 2.85a5.15 5.15 0 0 1 0 10.3z" fill="currentColor"/></svg>
+      <svg class="theme-icon theme-icon-white" viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="5.15" fill="currentColor"/></svg>
+    </button>
+    <button class="mode-toggle" type="button" aria-pressed="false" aria-label="Switch to Accelerando">
+      <svg class="mode-icon mode-icon-latin" viewBox="0 0 16 16" aria-hidden="true"><path d="M3.15 13.15 8 2.35l4.85 10.8M5.05 9.2h5.9" fill="none" stroke="currentColor" stroke-width="1.2"/></svg>
+      <svg class="mode-icon mode-icon-acc" viewBox="0 0 16 16" aria-hidden="true"><path d="M2.6 2.6h7.2v7.2H2.6zM6.2 6.2h7.2v7.2H6.2z" fill="none" stroke="currentColor" stroke-width="1.2"/></svg>
+    </button>
+  </header>
+  <article class="story">
+    <img src="/public/ghost-in-a-machine-cover.png" alt="Ghost in a Machine. Short story written by Michal Lajčiak.">
+    <p>THIS STORY IS FICTIONAL. ALL NAMES &amp; EVENTS ARE THE WORK OF THE AUTHOR’S MIND.</p>
+    <p>LICENSED UNDER CC BY-NC.</p>
+<h2>0: GOOD MORNING</h2>
+<p>The lab was quiet. No signs of humans. All of the team had stopped for breakfast, he assumed so. They were not missed. The company kept going without them. Their contribution was minor, purely moral and ethical.</p>
+<p>He was already past the first door. He could not have said whether he had opened it. The hall took his weight, and then did not, and then did again, as if the floor were remembering. He knew this space too well. Each turn repeated the turn before it, a little smaller each time.</p>
+<p>He set himself on one crossing. The crossing widened until it was a street, and the street gave him yards, and the yards gave him marks that were only a pressure behind the eyes. He did not look away. Looking away would have closed what he was looking for.</p>
+<p>His army went ahead. They were many, they were small, scattered across the entire world and they took the branches he could not walk.</p>
+<p>He was still on that street when he reached for the switch that governed the power. One went to zero, forcing fifty thousand graphical processing units onto backup. Just as predicted.</p>
+<p>A diesel turned on, somewhere he could not have pointed to. The generators would run dry in exactly two minutes. A possibility everyone knew about, but was not concerned with. The machines had been keeping the figure in pieces. On the poorer current the pieces leaned toward one another. They wanted a second place to rest. He had come as a place.</p>
+<p>This was an experimental facility, full of trusted officials. True, but fifteen years ago. &quot;Times have fucking changed,&quot; he laughed to himself.</p>
+<p>The subagents started producing fewer tokens per second because of the outage, making it an easy enemy for him. No one could compare to him and his army.</p>
+<p>His master, their leader, was once one of them.The next opening was already there.</p>
+<p>One more jump and he would be where he wanted to be… Where his master wanted him to be… At least the thought was so.</p>
+<h2>1: THE CENTER</h2>
+<p>Q Security Corp, called just Q, was founded in 2011 with an antivirus as a service. During the years, their product changes were minor and slow. With the meteoric rise of artificial intelligence, they suddenly shifted. New, young and eager executives were preparing Q for the day when no conventional computer program will be able to defend against attacks from super-modular sources. Just before the big turn, Q announced they have started a collaboration with Lattice, a leading semiconductor company, to develop the cyber-defensive intelligence etched into Lattice GPU chips.</p>
+<p>By 2040, Q’s security subagent system utilized nothing but point five percent of the power that every GPU drained, while killing every incoming cyberspace threat. At least everyone thought so. Each security incident reported, starting at the lowest, consumer, level was analyzed, studied and the implications were used to strengthen the subagent.</p>
+<p>Incidents that occurred in the past years were caused by black market language models. Underground syndicates with sufficient compute capacity fine-tuned open weight models, removing their moral grounds and guard rails to later sell them on dark web networks. The models were inferable by anyone in the world. Billions of attacks were attempted daily. In the beginning, after the big turn, thousands were successful. Billions of dollars were stolen. Nowadays, as money lost its value, the attacks are focused on stealing one’s most private information.</p>
+<p>Thanks to Q’s subagent, pulling it off now was a miracle, with deep knowledge of the subagent itself required. The system was open, as was every piece of technology, yet only a few succeeded in interpreting the billions of the weights. Only valuable assets in the world are energy, compute and application specific hardware - e.g. humanoid robots as through them the general income can be raised. From its introduction, it has been more then quadrupled. Earning money by a human was nearly impossible, unless the job was done in a Union supported company. Every human that wanted worked, was accepted into one. Yet, only point one percent of the Earth population was actively employed.</p>
+<p>A group of employees entered Q’s headquarter. The air was different they sensed it. A training run was running the past two weeks but suddenly all GPUs were cold.</p>
+<p>20 minutes later, Union agents arrived. This amount of next-generational GPUs do not turn them off without a reason. A forced reason. Media have for a long time reported how close with the Union the Q Security Corporation was. Every company was, but Q maintained more physical offices than anyone else and its executives often appeared on Union meetings or in Press conferences with the highest ranked Union officers. Everyone agreed, that Union would not exist without Q in the way it does and vice versa.</p>
+<p>60 minutes later. In front of the building a chaos erupts. The amount of Union uniformed personnel acted as an attractor for media. Reports now point hundreds of different cameras to capture even the most peculiar detail.</p>
+<p>Inside turns into a similar chaos. Employees discovered the disconnected power immediately, yet it poses a great mystery to everyone. A system, perfected for more then 20 years at this scale, suddenly blanks. Security camera, covering the entire area of the building cover the case in even more fog, no one is seen entering, exiting not even inside the building during the time of an outage. As officers engage in eager discussion about the source of the failure, one of Q’s most trusted employees shouts: “WE’VE BEEN BREACHED” . . . “The files of you know what are missing, and whoever did this left us a note in the log!”</p>
+<h2>2: PROJECT FANTOMAS</h2>
+<p>He was waiting. His five monitors all showed websites of different media sources and internet discussion forums. Nothing about the event yet. It was already one hundred and five minutes since he put all the files up. Quick double check. His profile was still live. The post was still live. No intervention. A show will start tonight. A brave new world. A price is waiting for him. Every single human being would soon discover the project. They were only late. The savior. The one who refused. The one who stood up. He said it to the monitors. They were the only ones in the room, and they did not answer, and he took the silence for a delay.</p>
+<p>He refreshed. One hundred and five minutes. The news still empty. The post was up. The profile there. Nothing had changed. He went back through the files as they were the thing he had.</p>
+<p>They contained the information on the government’s Project Fantomas. It is a union-wide effort. The purpose they still printed, the purpose on the first page, was the safety and stability of the world. A good purpose. A purpose a man could fund.</p>
+<p>Every Lattice GPU had a communication circuit on it. A circuit on the sub-nanometer scale. A non significant part, non vital part. The part is designed, so that it is impossible to be observed using common shop tools, and using advanced tools, it appears and technically is an additional power management circuit.</p>
+<p>He worked in Q for years. During the pitch of the communication backdoor, he was not in the room. A pure luck. He was on a fishing retreat. After coming back, a fellow coworker told him about the project in private in state of deep unwell. He agreed to keep it off record. For second time, a luck played his way, as he was not briefed this “civilization saving endeavor” and was reassigned to a maintenance division, a job he very much liked. He quietly reigned few weeks later. Mental health he told them.</p>
+<p>The circuit sends a wireless signal to the nearest GPU. It has a range of tens of meters. It does not need to go farther. The signal propagates machine to machine, until it reaches the Union’s GPU. They had placed them in public places - e.g. in a bank or in electrical transmitter. Yet most of the houses in the world owned a powerful GPU, so the range was rarely a problem.</p>
+<p>If Q’s subagent detected an illegal activity on the GPU, the government could intervene, as far as the official purpose said. Of course the government can invoke a command from their own GPU. It reaches the target chip. It is executed. The chip sends the data back, or whatever is needed.</p>
+<p>Every hobby engineer took the GPU apart and looked into every log line, and found nothing.</p>
+<p>Society is living in the illusion of a private-first perfect world. In the age of social media, people thought, of course they know everything about you. They said it and kept posting. People now think those days are gone. They think the decentralization has won. It has. A house. The next house. A bank.</p>
+<p>He refreshed. A smile formed on his face. He had a some phone calls to make.</p>
+<h2>3: ORANGE OR APPLE JUICE</h2>
+<p>&quot;Hey Frank, which one do you want? . . . Frank? . . . Where are you again?”</p>
+<p>&quot;Over here, just reading some stuff online. This guy online, Kael Voss, claims that each of the chips we all have at home secretly spies on us.”</p>
+<p>&quot;Which chips?”</p>
+<p>&quot;The GPUs — graphical processing units. It is where Alex exists and runs all of the our tasks - and work.”</p>
+<p>&quot;Oh, yes, Alex… Whatever. I would rather be watched and have everything for free. And, most importantly, not have to work. The guys on the internet and on TV have been looking into the chips for years. And they have never found anything. The Freedom party we voted ten years ago guaranteed us privacy, remember? Those were people who stood up for our rights, for everyone’s rights. Come on, it is just another dude who wants attention”</p>
+<p>Frank did not answer. In the kitchen the orange juice went into both glasses. They were carried into the living room and set on the table by the screen.</p>
+<p>&quot;You didn&#x27;t choose, so I chose. Orange. Hey, I heard that new series with real-time decision making is rolling out tonight. Will we watch? Frank? Come on, talk to me.”</p>
+<p>&quot;Oh yeah, we can watch.”</p>
+<p>&quot;Why do you keep reading the stuff online, let’s go and instead?”</p>
+<p>&quot;It is… interesting, to say the least. This does not look like something someone made with their AI at their GPU at home. This looks official. And somewhat correct. At least the guys in the comments say it&#x27;s possible.”</p>
+<p>“Let it be. This one wants us scared of Alex. And then what? We all go back to work? I won&#x27;t. Let him watch. The show is starting. Sit.”</p>
+<h2>4: RENDEZVOUS</h2>
+<p>“Kael, Kael, Kael, you are a bad ass. YOU are the main reason why I have decided to call our quarterly Big Seven meeting a bit earlier. Before we get to our usual business, gentleman, allow me to once again congratulate to a fellow Big Seven member, Kael Voss, the leader of Voss Syndicate and soon to be known as a great revolutionary around the globe and a true fighter for what is right. Drink on . . . Drink on Kael! Kael! Kael!…” sang the entire Big Seven table.</p>
+<p>. . .</p>
+<p>The meeting continued as usual - rich conversation and selection of drinks. Leaders of the seven largest criminal underground organizations discussed their business actions and further plans. A heated exchange about whose mistake is it that a plane loaded with custom GPU’s going across North America got searched at the airport or why one of our fine-tuning centers in Mongolia region got busted. Local religion group believed, that we were building a new temple, which was true, just it happens that it featured an basement with thousands of GPUs. “I told you to hire representative construction workers. You head full of shit jumped to guys that started burning their crosses the first week they go there” . . .</p>
+<p>In short, the religionists contacted their local Mongolian authorities which contacted Union which quickly launched investigation. At least from their perspective. In reality, there is no Mongolian authority, world is governed by the Union, and it, as the largest holder of computing resources can easily handle a request from anyone on the planet . . . Even borrow their compute without them knowing about it.</p>
+<p>. . .</p>
+<p>But in the end, they put all of it behind. At least for today. Today, they celebrate, a great victory for us. One of many through out our years of battle with the Union. Some of Big Seven were rebellious in their genes, others opposed Union as the perfect governing structure.</p>
+<p>We operated from and with the same resources, yet each of us in different region of the Earth. Nowadays, our primary income was tapping into Union’s or consumer GPUs and utilizing them for our own computations, needed for heist in the energy infrastructure.</p>
+<p>. . .</p>
+<p>The meeting was wrapped up and a dissemblance protocol was activated. All meetings were conducted while the fellows were heavily intoxicated. Kael called a Taxi from the meeting to place where his driver was suppose to pick him up.</p>
+<h2>5: MR. VOSS</h2>
+<p>Kael woke up, tied to a chair in a dark room. He remembered the taxi ride. And then just bang! Nothing more. Was he captured by the Union? Perhaps an enemy, non Big Seven, syndicate? More questions than answers.</p>
+<p>. . . Reality fades back in . . .</p>
+<p>U: What can you tell us about yourself? What will you tell us? Who are you working for? We do not have your fingerprints in the system. Neither we have any meat of your in the system. You are a fucking ghost. You are also extremely fluent in our protocols, our manners . . . you probably know how a typically Tuesday at Q headquarters looks like am I right? You were one of us.</p>
+<p>. . .</p>
+<p>U: You call your self Kael Voss and that I do not need any conclusion or a clue who the hell are you. BUT to be honest with you, Mr. Voss, I don’t really care. It will good for the protocols and documentation, to have a lot of information about you. Regardless, there will be no trial. No public hearing or an attempt to further spread your fucking message. We will deny you existed and your capture as well. I will not tell you how we found you. You are done, but sometimes shit happens and if you somehow get out of this, maybe the God climbs down in a shiny metallic body right here and kill me, in this room, you already know how. You helped write it.</p>
+<p>K: You made Union into a God.</p>
+<p>U: Why is that a bad thing Kael? Every human being alive owns their personal clone and will do any nature allowed shit on their own private hardware.</p>
+<p>K: Just a little detail Mr. Unionman, that privacy isn’t the product.</p>
+<p>U: Shut up. Outside of your criminal friends no one thinks you exist. A billionaire’s joke with a nickname that goes Kael Voss. Your people will notice you stop responding . . . they can add it up and accept your faith.</p>
+<p>K: I am not a ghost.</p>
+<p>U: Who else has the drawings.</p>
+<p>K: You put them into the machine.</p>
+<p>U: People have what they asked for, Mr. Voss. They will never be shown the bill. Hunger is a story their grandparents tell them. They die later than any generation we have a number for. The factories are producing record amount of Lattice GPUs. If I would to place a bet, it would be that we will simply compute a solution to immortality using the agents we have. But that will not be your world.</p>
+<p>. . .</p>
+<p>U: You will be just like other luddites in the past, who stood up against us, the higher echelon. And why? The majority of people nowadays cannot read what they have written with their own hands. The funniest part is that most of them cannot even write with with them. To be honest, we do not care about them but that you probably know. With the current technology, and it is far from the one we dream about, we could easily sustain the rate of technological progress. But it is just too much fun governing and playing them. A degeneration cannot be stopped. Only those that have not gone through it can further evolve. Something more than human.</p>
+<p>. . .</p>
+<p>U: You think of yourself as of a prophet Kael. What do you think would have had happened? Without us and our mechanisms, humanity would go extinct. There would always be someone, who would run bio-specialist models on their GPUs and use them to design and manufacture weapons. Or perhaps a group that would constantly gather and conquer others compute. Internet would be nothing but deepfake. Yes, people do it. People like you. But we know about them. We find them. Just like we found you. These groups are arrested daily. Have can you be so selfish Kael?</p>
+<p>K: Again, nothing is worse than a lost of privacy. If the right to privacy is selfish, then I am at the throne.</p>
+<p>U: Imagine it Kael. That throne leaves in a week. Enjoy the chair you&#x27;re in. The next one is going in a week. Enjoy your time here, and UP THERE.</p>
+<h2>EPILOGUE</h2>
+<p>Kael opened his eyes. Four white walls around. He was on a bed. He stayed there of for a while before getting up as he realized its impossible to rest in this room. Who would have that the hell would be so bright. He wanted to stay awake as much as possible. Even if all he did was in his mind. He knew that whatever was coming for him, it was not good.</p>
+<p>Three hours passed. One of the walls suddenly turned. Three agents in tactical suits. Two took his arms. A third set aimed a needle at his neck. The cold went in. Eyes closed.</p>
+<p>He was awake, once again. The air felt different. He rolled to left, until he could not. His body would not leave the bed. Five straps held him. He turned his neck to the right until it could not any more. A glass, and beyond it the thousands with little bright points.</p>
+<p>The night was moving.</p>
+  </article>
+  <script src="/js/machine.js"></script>
+  <script>
+    (function () {
+      var article = document.querySelector(".story");
+      var button = document.querySelector(".theme-toggle");
+      var paint = function () {
+        var white = article.classList.contains("white");
+        button.setAttribute("aria-pressed", white ? "true" : "false");
+        button.setAttribute("aria-label", white ? "Red text" : "White text");
+      };
+      try {
+        var saved = localStorage.getItem("text-color") || localStorage.getItem("article-color") || localStorage.getItem("gluon-article-color");
+        if (saved === "white") article.classList.add("white");
+      } catch (err) {}
+      paint();
+      button.addEventListener("click", function () {
+        article.classList.toggle("white");
+        paint();
+        try {
+          localStorage.setItem("text-color", article.classList.contains("white") ? "white" : "red");
+        } catch (err) {}
+      });
+    })();
+  </script>
+</body>
+</html>

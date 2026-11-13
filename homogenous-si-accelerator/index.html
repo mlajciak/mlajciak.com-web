@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Homogenous SI Accelerator</title>
+  <link rel="icon" type="image/png" href="/public/favicon.png">
+  <link rel="preload" href="/public/fonts/osp-din.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/public/fonts/latin-modern-roman.woff2" as="font" type="font/woff2" crossorigin>
+  <style>
+    @font-face {
+      font-family: "Latin Modern Roman";
+      font-style: normal;
+      font-weight: 400;
+      font-display: block;
+      src: url("/public/fonts/latin-modern-roman.woff2") format("woff2");
+    }
+    @font-face {
+      font-family: "OSP-DIN";
+      font-style: normal;
+      font-weight: 500;
+      font-display: block;
+      src: url("/public/fonts/osp-din.woff2") format("woff2");
+    }
+    @font-face {
+      font-family: "Accelerando-8192";
+      font-weight: 400;
+      src: url("/public/fonts/accelerando-8192.ttf?v=2") format("truetype");
+      font-display: block;
+      unicode-range: U+F0000-F1FFF;
+    }
+    html {
+      background: #000;
+      color: #ff0000;
+      font-family: "OSP-DIN", sans-serif;
+      font-size: 112.5%;
+      overflow-x: clip;
+    }
+    body {
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+      min-height: 100vh;
+      max-width: 38rem;
+      background: #000;
+      color: #ff0000;
+      font-weight: 500;
+      line-height: 1.4;
+      overflow-wrap: anywhere;
+    }
+    html.machine body,
+    html.machine body *:not(.mode-toggle):not(.mode-toggle *):not(.theme-toggle):not(.theme-toggle *) {
+      font-family: "Accelerando-8192", "OSP-DIN", sans-serif;
+      font-weight: 400;
+      font-synthesis: none;
+      letter-spacing: 0;
+    }
+    .top, .story {
+      margin: 0 -1.5rem;
+      border: 1px solid #ff0000;
+    }
+    .top {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 0.55rem 3.8rem 0.55rem 1.5rem;
+      border-bottom: 0;
+      background: #ff0000;
+      color: #000;
+      font-size: 1rem;
+      font-weight: 500;
+      line-height: 1.4;
+    }
+    .top a, .top a:visited { color: #000; text-decoration: none; min-width: 0; }
+    .top a:hover, .top a:focus-visible { background: #000; color: #ff0000; }
+    .theme-toggle,
+    .mode-toggle {
+      position: absolute;
+      top: 50%;
+      width: 16px;
+      height: 16px;
+      margin: 0;
+      padding: 0;
+      border: 0;
+      appearance: none;
+      background: transparent;
+      color: #000;
+      line-height: 0;
+      cursor: pointer;
+      transform: translateY(-50%);
+    }
+    .theme-toggle { right: 2.15rem; }
+    .mode-toggle { right: 0.7rem; }
+    .theme-toggle:hover .theme-icon,
+    .mode-toggle:hover .mode-icon { opacity: 0.7; }
+    .theme-toggle::before,
+    .theme-toggle::after,
+    .mode-toggle::before,
+    .mode-toggle::after { opacity: 0; pointer-events: none; }
+    .theme-toggle::before,
+    .mode-toggle::before {
+      content: "";
+      position: absolute;
+      top: calc(100% + 3px);
+      left: 50%;
+      transform: translateX(-50%);
+      border-style: solid;
+      border-width: 0 5px 6px 5px;
+      border-color: transparent transparent #000 transparent;
+    }
+    .theme-toggle::after,
+    .mode-toggle::after {
+      content: attr(aria-label);
+      position: absolute;
+      top: calc(100% + 9px);
+      padding: 0.14rem 0.42rem;
+      background: #000;
+      color: #ff0000;
+      font-family: "OSP-DIN", sans-serif;
+      font-size: 0.68rem;
+      font-weight: 500;
+      line-height: 1.3;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+    .theme-toggle::after { left: 50%; transform: translateX(-50%); }
+    .mode-toggle::after { right: -0.2rem; }
+    .theme-toggle:hover::before,
+    .theme-toggle:focus-visible::before,
+    .theme-toggle:hover::after,
+    .theme-toggle:focus-visible::after,
+    .mode-toggle:hover::before,
+    .mode-toggle:focus-visible::before,
+    .mode-toggle:hover::after,
+    .mode-toggle:focus-visible::after { opacity: 1; }
+    .theme-toggle:focus-visible,
+    .mode-toggle:focus-visible { outline: 2px solid #000; outline-offset: 3px; }
+    .theme-toggle .theme-icon,
+    .mode-toggle .mode-icon { display: block; width: 16px; height: 16px; }
+    .theme-toggle .theme-icon-white,
+    .mode-toggle .mode-icon-acc { display: none; }
+    .theme-toggle[aria-pressed="true"] .theme-icon-red { display: none; }
+    .theme-toggle[aria-pressed="true"] .theme-icon-white { display: block; }
+    html.machine .mode-toggle .mode-icon-latin { display: none; }
+    html.machine .mode-toggle .mode-icon-acc { display: block; }
+    .story {
+      flex: 1;
+      padding: 0.7rem 1.5rem 4rem;
+      background: #000;
+      min-width: 0;
+      overflow-wrap: anywhere;
+      font-family: "Latin Modern Roman", "Times New Roman", serif;
+      font-weight: 400;
+    }
+    .story.white { color: #fff; }
+    h2 { margin: 0 0 0.7rem; font-size: 1.5rem; font-weight: 400; line-height: 1.2; }
+  </style>
+</head>
+<body>
+  <header class="top">
+    <a href="/">Michal Lajčiak</a>
+    <button class="theme-toggle" type="button" aria-pressed="false" aria-label="White article text">
+      <svg class="theme-icon theme-icon-red" viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="5.15" fill="none" stroke="currentColor" stroke-width="1.2"/><path d="M8 2.85a5.15 5.15 0 0 1 0 10.3z" fill="currentColor"/></svg>
+      <svg class="theme-icon theme-icon-white" viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="5.15" fill="currentColor"/></svg>
+    </button>
+    <button class="mode-toggle" type="button" aria-pressed="false" aria-label="Switch to Accelerando">
+      <svg class="mode-icon mode-icon-latin" viewBox="0 0 16 16" aria-hidden="true"><path d="M3.15 13.15 8 2.35l4.85 10.8M5.05 9.2h5.9" fill="none" stroke="currentColor" stroke-width="1.2"/></svg>
+      <svg class="mode-icon mode-icon-acc" viewBox="0 0 16 16" aria-hidden="true"><path d="M2.6 2.6h7.2v7.2H2.6zM6.2 6.2h7.2v7.2H6.2z" fill="none" stroke="currentColor" stroke-width="1.2"/></svg>
+    </button>
+  </header>
+  <article class="story">
+    <h2>HOMOGENOUS SI ACCELERATOR</h2>
+  </article>
+  <script src="/js/machine.js"></script>
+  <script>
+    (function () {
+      var article = document.querySelector(".story");
+      var button = document.querySelector(".theme-toggle");
+      var paint = function () {
+        var white = article.classList.contains("white");
+        button.setAttribute("aria-pressed", white ? "true" : "false");
+        button.setAttribute("aria-label", white ? "Red text" : "White text");
+      };
+      try {
+        var saved = localStorage.getItem("text-color") || localStorage.getItem("article-color") || localStorage.getItem("gluon-article-color");
+        if (saved === "white") article.classList.add("white");
+      } catch (err) {}
+      paint();
+      button.addEventListener("click", function () {
+        article.classList.toggle("white");
+        paint();
+        try {
+          localStorage.setItem("text-color", article.classList.contains("white") ? "white" : "red");
+        } catch (err) {}
+      });
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Theoretical Concept of Ternary Gluon-based Computer</title>
+  <link rel="icon" type="image/png" href="/public/favicon.png">
+  <link rel="preload" href="/public/fonts/osp-din.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/public/fonts/latin-modern-roman.woff2" as="font" type="font/woff2" crossorigin>
+  <style>
+    @font-face {
+      font-family: "Latin Modern Roman";
+      font-style: normal;
+      font-weight: 400;
+      font-display: block;
+      src: url("/public/fonts/latin-modern-roman.woff2") format("woff2");
+    }
+    @font-face {
+      font-family: "OSP-DIN";
+      font-style: normal;
+      font-weight: 500;
+      font-display: block;
+      src: url("/public/fonts/osp-din.woff2") format("woff2");
+    }
+    @font-face {
+      font-family: "Accelerando-8192";
+      font-weight: 400;
+      src: url("/public/fonts/accelerando-8192.ttf?v=2") format("truetype");
+      font-display: block;
+      unicode-range: U+F0000-F1FFF;
+    }
+    html {
+      background: #000;
+      color: #ff0000;
+      font-family: "OSP-DIN", sans-serif;
+      font-size: 112.5%;
+      overflow-x: clip;
+    }
+    body {
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+      min-height: 100vh;
+      max-width: 38rem;
+      background: #000;
+      color: #ff0000;
+      font-weight: 500;
+      line-height: 1.4;
+      overflow-wrap: anywhere;
+    }
+    html.machine body,
+    html.machine body *:not(.mode-toggle):not(.mode-toggle *):not(.math):not(.math *):not(mjx-container):not(mjx-container *) {
+      font-family: "Accelerando-8192", "OSP-DIN", sans-serif;
+      font-weight: 400;
+      font-synthesis: none;
+      letter-spacing: 0;
+    }
+    .top, .story {
+      margin: 0 -1.5rem;
+      border: 1px solid #ff0000;
+    }
+    .top {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 0.55rem 3.8rem 0.55rem 1.5rem;
+      border-bottom: 0;
+      background: #ff0000;
+      color: #000;
+      font-size: 1rem;
+      font-weight: 500;
+      line-height: 1.4;
+    }
+    .top a, .top a:visited { color: #000; text-decoration: none; min-width: 0; }
+    .top a:hover, .top a:focus-visible { background: #000; color: #ff0000; }
+    .theme-toggle,
+    .mode-toggle {
+      position: absolute;
+      top: 50%;
+      width: 16px;
+      height: 16px;
+      margin: 0;
+      padding: 0;
+      border: 0;
+      appearance: none;
+      background: transparent;
+      color: #000;
+      line-height: 0;
+      cursor: pointer;
+      transform: translateY(-50%);
+    }
+    .theme-toggle { right: 2.15rem; }
+    .mode-toggle { right: 0.7rem; }
+    .theme-toggle:hover .theme-icon,
+    .mode-toggle:hover .mode-icon { opacity: 0.7; }
+    .theme-toggle::before,
+    .theme-toggle::after,
+    .mode-toggle::before,
+    .mode-toggle::after { opacity: 0; pointer-events: none; }
+    .theme-toggle::before,
+    .mode-toggle::before {
+      content: "";
+      position: absolute;
+      top: calc(100% + 3px);
+      left: 50%;
+      transform: translateX(-50%);
+      border-style: solid;
+      border-width: 0 5px 6px 5px;
+      border-color: transparent transparent #000 transparent;
+    }
+    .theme-toggle::after,
+    .mode-toggle::after {
+      content: attr(aria-label);
+      position: absolute;
+      top: calc(100% + 9px);
+      padding: 0.14rem 0.42rem;
+      background: #000;
+      color: #ff0000;
+      font-family: "OSP-DIN", sans-serif;
+      font-size: 0.68rem;
+      font-weight: 500;
+      line-height: 1.3;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+    .theme-toggle::after { left: 50%; transform: translateX(-50%); }
+    .mode-toggle::after { right: -0.2rem; }
+    .theme-toggle:hover::before,
+    .theme-toggle:focus-visible::before,
+    .theme-toggle:hover::after,
+    .theme-toggle:focus-visible::after,
+    .mode-toggle:hover::before,
+    .mode-toggle:focus-visible::before,
+    .mode-toggle:hover::after,
+    .mode-toggle:focus-visible::after { opacity: 1; }
+    .theme-toggle:focus-visible,
+    .mode-toggle:focus-visible { outline: 2px solid #000; outline-offset: 3px; }
+    .theme-toggle .theme-icon,
+    .mode-toggle .mode-icon { display: block; width: 16px; height: 16px; }
+    .theme-toggle .theme-icon-white,
+    .mode-toggle .mode-icon-acc { display: none; }
+    .theme-toggle[aria-pressed="true"] .theme-icon-red { display: none; }
+    .theme-toggle[aria-pressed="true"] .theme-icon-white { display: block; }
+    html.machine .mode-toggle .mode-icon-latin { display: none; }
+    html.machine .mode-toggle .mode-icon-acc { display: block; }
+    .story {
+      flex: 1;
+      padding: 0.7rem 1.5rem 4rem;
+      background: #000;
+      min-width: 0;
+      overflow-wrap: anywhere;
+      font-family: "Latin Modern Roman", "Times New Roman", serif;
+      font-weight: 400;
+    }
+    h2 { margin: 1.6rem 0 0.7rem; font-size: 1.5rem; font-weight: 400; line-height: 1.2; }
+    h2:first-child { margin-top: 0; }
+    p { margin: 0 0 1rem; }
+    mjx-container { color: #ff0000; overflow-wrap: normal; }
+    .story.white,
+    .story.white mjx-container { color: #fff; }
+    mjx-container[display="true"] {
+      display: block;
+      margin: 1rem 0;
+      max-width: 100%;
+    }
+  </style>
+</head>
+<body>
+  <header class="top">
+    <a href="/">Michal Lajčiak</a>
+    <button class="theme-toggle" type="button" aria-pressed="false" aria-label="White article text">
+      <svg class="theme-icon theme-icon-red" viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="5.15" fill="none" stroke="currentColor" stroke-width="1.2"/><path d="M8 2.85a5.15 5.15 0 0 1 0 10.3z" fill="currentColor"/></svg>
+      <svg class="theme-icon theme-icon-white" viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="5.15" fill="currentColor"/></svg>
+    </button>
+    <button class="mode-toggle" type="button" aria-pressed="false" aria-label="Switch to Accelerando">
+      <svg class="mode-icon mode-icon-latin" viewBox="0 0 16 16" aria-hidden="true"><path d="M3.15 13.15 8 2.35l4.85 10.8M5.05 9.2h5.9" fill="none" stroke="currentColor" stroke-width="1.2"/></svg>
+      <svg class="mode-icon mode-icon-acc" viewBox="0 0 16 16" aria-hidden="true"><path d="M2.6 2.6h7.2v7.2H2.6zM6.2 6.2h7.2v7.2H6.2z" fill="none" stroke="currentColor" stroke-width="1.2"/></svg>
+    </button>
+  </header>
+  <article class="story">
+    <h2>THEORETICAL CONCEPT OF TERNARY GLUON-BASED COMPUTER</h2>
+    <p>The ternary register considered here is the color degree of freedom of quantum chromodynamics, and the gates are gluons. The gauge group is <span class="math">\(SU(N_c)\)</span> with <span class="math">\(N_c = 3\)</span>. A quark transforms in the fundamental representation <span class="math">\(\mathbf{3}\)</span>. An antiquark transforms in <span class="math">\(\bar{\mathbf{3}}\)</span>. A one-particle color state is a vector in a three-dimensional space, so the color of a quark is a trit.</p>
+    <p>A gluon transforms in the adjoint representation. A color together with an anticolor decomposes as</p>
+    <div class="math">\[\mathbf{3}\otimes\bar{\mathbf{3}} = \mathbf{8}\oplus\mathbf{1}.\]</div>
+    <p>The dimension of the adjoint follows at once,</p>
+    <div class="math">\[\dim\mathrm{adj}\,SU(3) = N_c^2 - 1 = 8.\]</div>
+    <p>The singlet on the right-hand side of the decomposition is not a gluon. Each of the eight generators changes the color of a quark, or mixes the three colors while remaining traceless. The stored symbol is the quark color. The gluon is the operation on that symbol.</p>
+
+    <p>Asymptotic states are color singlets. A state of nonzero color charge is connected to a compensating charge by a flux tube. The static energy of the tube is linear in its length,</p>
+    <div class="math">\[V(L) = \sigma L .\]</div>
+    <p>The phenomenological string tension and its conversion with <span class="math">\(\hbar c = 0.197\,\mathrm{GeV\,fm}\)</span> are</p>
+    <div class="math">\[\sigma \simeq 0.18\,\mathrm{GeV}^2 \simeq 0.91\,\mathrm{GeV/fm}.\]</div>
+    <p>A separation of one fermi therefore stores</p>
+    <div class="math">\[V(1\,\mathrm{fm}) \simeq 0.91\,\mathrm{GeV} = 1.46\times 10^{-10}\,\mathrm{J}.\]</div>
+    <p>The cost has no constant term that could be engineered away: it grows with <span class="math">\(L\)</span>. A tube of nuclear length hadronizes into color-singlet states. Net color is not a stable cell.</p>
+
+    <p>The lightest color-singlet state made only of gluons is the scalar glueball. Lattice spectroscopy places its mass at</p>
+    <div class="math">\[m_{0^{++}} \simeq 1.7\,\mathrm{GeV} = 2.72\times 10^{-10}\,\mathrm{J}.\]</div>
+    <p>That mass is the energy required to create the smallest gluonic cell. The Landauer energy of one trit at temperature <span class="math">\(T\)</span> is</p>
+    <div class="math">\[E_L = k_B T \ln 3 .\]</div>
+    <p>At <span class="math">\(T = 300\,\mathrm{K}\)</span>,</p>
+    <div class="math">\[E_L = 4.55\times 10^{-21}\,\mathrm{J},\]</div>
+    <p>and the ratio of the cell energy to that floor is</p>
+    <div class="math">\[\frac{m_{0^{++}}}{E_L} \simeq 6.0\times 10^{10}.\]</div>
+
+    <p>Above the crossover, color is not confined, and the carrier is a gluon plasma. An ideal gas of gluons has</p>
+    <div class="math">\[g_* = 2(N_c^2 - 1) = 16\]</div>
+    <p>degrees of freedom and energy density</p>
+    <div class="math">\[\varepsilon = \frac{\pi^2}{30}\, g_*\, T^4 .\]</div>
+    <p>Lattice QCD places the crossover at <span class="math">\(T_c \simeq 156\,\mathrm{MeV}\)</span>. Substitution of that temperature gives</p>
+    <div class="math">\[\varepsilon(T_c) \simeq 0.41\,\mathrm{GeV/fm}^3 .\]</div>
+    <p>A cell of volume <span class="math">\(1\,\mathrm{fm}^3\)</span> still costs a fraction of a GeV. The lifetime of the hot region in a nuclear collision is of order <span class="math">\(10\,\mathrm{fm}/c \simeq 3\times 10^{-23}\,\mathrm{s}\)</span>, after which the plasma hadronizes.</p>
+
+    <p>The dynamical time is fixed by the QCD scale <span class="math">\(\Lambda_{\mathrm{QCD}} \simeq 200\,\mathrm{MeV}\)</span>,</p>
+    <div class="math">\[\tau = \frac{\hbar}{\Lambda_{\mathrm{QCD}}} \simeq 3.3\times 10^{-24}\,\mathrm{s}.\]</div>
+    <p>One gluon exchange and the decay width of a glueball resonance are both set by this scale. Storage time and gate time are the same time, so an error-correcting cycle has no interval in which to run.</p>
+    <p>A detector couples to singlets. The baryon singlet and the meson singlet are</p>
+    <div class="math">\[\frac{1}{\sqrt{6}}\,\epsilon_{ijk}\,\lvert q^{i} q^{j} q^{k}\rangle , \qquad \delta^{i}_{\;j}\,\lvert q^{j}\bar{q}_{i}\rangle .\]</div>
+    <p>Both projectors sum over the color index. The ternary label is not an eigenvalue of the state that reaches the detector.</p>
+
+    <p>The construction is fixed by the relations above. There are eight gluonic gates acting on a three-color trit. The minimum energy of a legal cell is <span class="math">\(m_{0^{++}} \simeq 1.7\,\mathrm{GeV}\)</span>, about <span class="math">\(6\times 10^{10}\)</span> Landauer energies of one trit at room temperature, or <span class="math">\(\sigma \simeq 0.91\,\mathrm{GeV/fm}\)</span> for a flux tube. The cell and the gate both last about <span class="math">\(10^{-24}\,\mathrm{s}\)</span>. The readout alphabet has one symbol. Below <span class="math">\(\Lambda_{\mathrm{QCD}}\)</span> the trit is not an asymptotic degree of freedom. Above it, the carrier has energy density of order <span class="math">\(1\,\mathrm{GeV/fm}^3\)</span>.</p>
+  </article>
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [["$", "$"], ["\\(", "\\)"]],
+        displayMath: [["$$", "$$"], ["\\[", "\\]"]],
+        processEscapes: true
+      },
+      output: {
+        displayOverflow: "linebreak",
+        font: "mathjax-newcm"
+      }
+    };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js"></script>
+  <script src="/js/machine.js"></script>
+  <script>
+    (function () {
+      var key = "text-color";
+      var article = document.querySelector(".story");
+      var button = document.querySelector(".theme-toggle");
+      var paint = function () {
+        var white = article.classList.contains("white");
+        button.setAttribute("aria-pressed", white ? "true" : "false");
+        button.setAttribute("aria-label", white ? "Red text" : "White text");
+      };
+      try {
+        var saved = localStorage.getItem("text-color") || localStorage.getItem("article-color") || localStorage.getItem("gluon-article-color");
+        if (saved === "white") article.classList.add("white");
+      } catch (err) {}
+      paint();
+      button.addEventListener("click", function () {
+        article.classList.toggle("white");
+        paint();
+        try {
+          localStorage.setItem("text-color", article.classList.contains("white") ? "white" : "red");
+        } catch (err) {}
+      });
+    })();
+  </script>
+</body>
+</html>

@@ -64,7 +64,7 @@ const glyphs = (text) => {
 };
 
 const blocked = (el) =>
-  !el || el.closest("script, style, noscript, svg, mjx-container, mjx-assistive-mml, .mode-toggle");
+  !el || el.closest("script, style, noscript, svg, mjx-container, mjx-assistive-mml, .mode-toggle, .math, figcaption");
 
 const shown = (node, raw) => {
   const transform = getComputedStyle(node.parentElement).textTransform;
@@ -162,7 +162,10 @@ const setMachine = async (next) => {
     /* private mode */
   }
   paintButton(button);
+  document.dispatchEvent(new CustomEvent("xyzt-mode", { detail: machine }));
 };
+
+window.machineText = (text) => glyphs(String(text ?? ""));
 
 window.machinePause = () => ++pauseGen;
 
